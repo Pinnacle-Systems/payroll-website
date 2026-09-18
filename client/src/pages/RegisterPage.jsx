@@ -7,14 +7,13 @@ import {
   Lock,
   User,
   Phone,
-  ShoppingBag,
   ArrowRight,
   Check,
 } from "lucide-react";
-
 import { useRegisterMutation } from "../redux/services/authApi";
 import { setCredentials } from "../redux/features/authSlice";
 import { useAppDispatch } from "../redux/Dispatch/useAppDispatch";
+import faviconImg from "../assets/favicon.png";
 
 const PASSWORD_RULES = [
   { label: "At least 8 characters", test: (p) => p.length >= 8 },
@@ -82,7 +81,10 @@ export default function RegisterPage({
       if (isModal) onClose();
       else navigate("/");
     } catch (err) {
-      const errMsg = err?.data?.message || err?.message || "Registration failed. Please try again.";
+      const errMsg =
+        err?.data?.message ||
+        err?.message ||
+        "Registration failed. Please try again.";
       setErrors({ apiError: errMsg });
     }
   };
@@ -93,39 +95,45 @@ export default function RegisterPage({
   };
 
   const cardContent = (
-    <div className="auth-card auth-card-wide">
+    <div className="bg-white rounded-3xl p-8 sm:p-10 w-full max-w-[600px] shadow-2xl relative border border-gray-100">
       {/* Brand */}
-      <div className="auth-brand">
-        <div className="auth-brand-icon">
-          <ShoppingBag size={26} />
-        </div>
-        <span className="auth-brand-name">B2 Sami Foods</span>
+      <div className="flex items-center gap-3 mb-8">
+        <img src={faviconImg} alt="Logo" className="w-10 h-10 object-contain" />
+        <span className="text-xl font-extrabold tracking-tight text-gray-900">
+          Pinnacle <span className="text-[#e56419]">Systems</span> Payroll
+        </span>
       </div>
 
-      <h1 className="auth-title">Create your account</h1>
-      <p className="auth-subtitle">Join thousands of happy customers today</p>
+      <h1 className="text-2xl font-bold text-gray-900 mb-2">
+        Create your account
+      </h1>
+      <p className="text-gray-500 text-[15px] mb-8">
+        Join thousands of companies simplifying their payroll today.
+      </p>
 
       <form
         onSubmit={handleSubmit}
-        className="auth-form auth-form-grid"
+        className="grid grid-cols-1 sm:grid-cols-2 gap-5"
         noValidate
       >
-        {/* API Error Display */}
         {errors.apiError && (
-          <div className="sm:col-span-2 p-3 bg-red-500/10 border border-red-500/20 text-red-500 rounded-xl text-sm font-medium text-center">
+          <div className="sm:col-span-2 p-3 bg-red-50 border border-red-200 text-red-600 rounded-xl text-sm font-medium text-center">
             {errors.apiError}
           </div>
         )}
 
         {/* Full Name */}
-        <div className="auth-field sm:col-span-2">
-          <label htmlFor="reg-name" className="auth-label">
+        <div className="flex flex-col gap-2 sm:col-span-2">
+          <label
+            htmlFor="reg-name"
+            className="text-[14px] font-semibold text-gray-700"
+          >
             Full name
           </label>
           <div
-            className={`auth-input-wrap ${errors.name ? "auth-input-error" : ""}`}
+            className={`flex items-center gap-3 bg-gray-50 border ${errors.name ? "border-red-400 focus-within:border-red-500 focus-within:ring-red-500/20" : "border-gray-200 focus-within:border-[#e56419] focus-within:ring-[#e56419]/20"} focus-within:ring-4 rounded-xl px-4 h-12 transition-all`}
           >
-            <User size={17} className="auth-input-icon" />
+            <User size={18} className="text-gray-400 shrink-0" />
             <input
               id="reg-name"
               name="name"
@@ -134,46 +142,58 @@ export default function RegisterPage({
               placeholder="John Doe"
               value={form.name}
               onChange={handleChange}
-              className="auth-input"
+              className="flex-1 bg-transparent border-none outline-none text-[15px] text-gray-900 placeholder:text-gray-400"
             />
           </div>
-          {errors.name && <span className="auth-error-msg">{errors.name}</span>}
+          {errors.name && (
+            <span className="text-red-500 text-xs font-medium mt-1">
+              {errors.name}
+            </span>
+          )}
         </div>
 
         {/* Email */}
-        <div className="auth-field">
-          <label htmlFor="reg-email" className="auth-label">
+        <div className="flex flex-col gap-2">
+          <label
+            htmlFor="reg-email"
+            className="text-[14px] font-semibold text-gray-700"
+          >
             Email address
           </label>
           <div
-            className={`auth-input-wrap ${errors.email ? "auth-input-error" : ""}`}
+            className={`flex items-center gap-3 bg-gray-50 border ${errors.email ? "border-red-400 focus-within:border-red-500 focus-within:ring-red-500/20" : "border-gray-200 focus-within:border-[#e56419] focus-within:ring-[#e56419]/20"} focus-within:ring-4 rounded-xl px-4 h-12 transition-all`}
           >
-            <Mail size={17} className="auth-input-icon" />
+            <Mail size={18} className="text-gray-400 shrink-0" />
             <input
               id="reg-email"
               name="email"
               type="email"
               autoComplete="email"
-              placeholder="you@example.com"
+              placeholder="you@company.com"
               value={form.email}
               onChange={handleChange}
-              className="auth-input"
+              className="flex-1 bg-transparent border-none outline-none text-[15px] text-gray-900 placeholder:text-gray-400"
             />
           </div>
           {errors.email && (
-            <span className="auth-error-msg">{errors.email}</span>
+            <span className="text-red-500 text-xs font-medium mt-1">
+              {errors.email}
+            </span>
           )}
         </div>
 
         {/* Mobile */}
-        <div className="auth-field">
-          <label htmlFor="reg-mobile" className="auth-label">
+        <div className="flex flex-col gap-2">
+          <label
+            htmlFor="reg-mobile"
+            className="text-[14px] font-semibold text-gray-700"
+          >
             Mobile number
           </label>
           <div
-            className={`auth-input-wrap ${errors.mobile ? "auth-input-error" : ""}`}
+            className={`flex items-center gap-3 bg-gray-50 border ${errors.mobile ? "border-red-400 focus-within:border-red-500 focus-within:ring-red-500/20" : "border-gray-200 focus-within:border-[#e56419] focus-within:ring-[#e56419]/20"} focus-within:ring-4 rounded-xl px-4 h-12 transition-all`}
           >
-            <Phone size={17} className="auth-input-icon" />
+            <Phone size={18} className="text-gray-400 shrink-0" />
             <input
               id="reg-mobile"
               name="mobile"
@@ -182,23 +202,28 @@ export default function RegisterPage({
               placeholder="9876543210"
               value={form.mobile}
               onChange={handleChange}
-              className="auth-input"
+              className="flex-1 bg-transparent border-none outline-none text-[15px] text-gray-900 placeholder:text-gray-400"
             />
           </div>
           {errors.mobile && (
-            <span className="auth-error-msg">{errors.mobile}</span>
+            <span className="text-red-500 text-xs font-medium mt-1">
+              {errors.mobile}
+            </span>
           )}
         </div>
 
         {/* Password */}
-        <div className="auth-field">
-          <label htmlFor="reg-password" className="auth-label">
+        <div className="flex flex-col gap-2">
+          <label
+            htmlFor="reg-password"
+            className="text-[14px] font-semibold text-gray-700"
+          >
             Password
           </label>
           <div
-            className={`auth-input-wrap ${errors.password ? "auth-input-error" : ""}`}
+            className={`flex items-center gap-3 bg-gray-50 border ${errors.password ? "border-red-400 focus-within:border-red-500 focus-within:ring-red-500/20" : "border-gray-200 focus-within:border-[#e56419] focus-within:ring-[#e56419]/20"} focus-within:ring-4 rounded-xl px-4 h-12 transition-all`}
           >
-            <Lock size={17} className="auth-input-icon" />
+            <Lock size={18} className="text-gray-400 shrink-0" />
             <input
               id="reg-password"
               name="password"
@@ -207,36 +232,35 @@ export default function RegisterPage({
               placeholder="••••••••"
               value={form.password}
               onChange={handleChange}
-              className="auth-input"
+              className="flex-1 bg-transparent border-none outline-none text-[15px] text-gray-900 placeholder:text-gray-400 w-full"
             />
             <button
               type="button"
-              className="auth-eye-btn"
+              className="text-gray-400 hover:text-gray-600 transition-colors"
               onClick={() => setShowPassword((v) => !v)}
-              aria-label="Toggle password visibility"
             >
-              {showPassword ? <EyeOff size={17} /> : <Eye size={17} />}
+              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
           </div>
           {errors.password && (
-            <span className="auth-error-msg">{errors.password}</span>
+            <span className="text-red-500 text-xs font-medium mt-1">
+              {errors.password}
+            </span>
           )}
 
-          {/* Password strength hints */}
+          {/* Password Rules */}
           {form.password && (
-            <ul className="auth-pwd-rules">
+            <ul className="flex flex-col gap-1 mt-1">
               {PASSWORD_RULES.map((r) => (
                 <li
                   key={r.label}
-                  className={`auth-pwd-rule ${r.test(form.password) ? "auth-pwd-rule-ok" : ""}`}
+                  className={`text-xs flex items-center gap-1.5 ${r.test(form.password) ? "text-[#e56419]" : "text-gray-400"}`}
                 >
-                  <span className="auth-pwd-dot">
-                    {r.test(form.password) ? (
-                      <Check size={11} />
-                    ) : (
-                      <span className="auth-pwd-circle" />
-                    )}
-                  </span>
+                  {r.test(form.password) ? (
+                    <Check size={12} />
+                  ) : (
+                    <div className="w-1.5 h-1.5 rounded-full bg-gray-300 ml-0.5" />
+                  )}
                   {r.label}
                 </li>
               ))}
@@ -245,14 +269,17 @@ export default function RegisterPage({
         </div>
 
         {/* Confirm Password */}
-        <div className="auth-field">
-          <label htmlFor="reg-confirm" className="auth-label">
+        <div className="flex flex-col gap-2">
+          <label
+            htmlFor="reg-confirm"
+            className="text-[14px] font-semibold text-gray-700"
+          >
             Confirm password
           </label>
           <div
-            className={`auth-input-wrap ${errors.confirm ? "auth-input-error" : ""}`}
+            className={`flex items-center gap-3 bg-gray-50 border ${errors.confirm ? "border-red-400 focus-within:border-red-500 focus-within:ring-red-500/20" : "border-gray-200 focus-within:border-[#e56419] focus-within:ring-[#e56419]/20"} focus-within:ring-4 rounded-xl px-4 h-12 transition-all`}
           >
-            <Lock size={17} className="auth-input-icon" />
+            <Lock size={18} className="text-gray-400 shrink-0" />
             <input
               id="reg-confirm"
               name="confirm"
@@ -261,49 +288,54 @@ export default function RegisterPage({
               placeholder="••••••••"
               value={form.confirm}
               onChange={handleChange}
-              className="auth-input"
+              className="flex-1 bg-transparent border-none outline-none text-[15px] text-gray-900 placeholder:text-gray-400 w-full"
             />
             <button
               type="button"
-              className="auth-eye-btn"
+              className="text-gray-400 hover:text-gray-600 transition-colors"
               onClick={() => setShowConfirm((v) => !v)}
-              aria-label="Toggle confirm password visibility"
             >
-              {showConfirm ? <EyeOff size={17} /> : <Eye size={17} />}
+              {showConfirm ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
           </div>
           {errors.confirm && (
-            <span className="auth-error-msg">{errors.confirm}</span>
+            <span className="text-red-500 text-xs font-medium mt-1">
+              {errors.confirm}
+            </span>
           )}
         </div>
 
         <button
           type="submit"
-          className="auth-submit-btn sm:col-span-2"
+          className="sm:col-span-2 mt-4 h-12 bg-[#e56419] hover:bg-[#d45610] text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-[0_4px_14px_rgba(229,100,25,0.4)] hover:shadow-[0_6px_20px_rgba(229,100,25,0.6)] hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0"
           disabled={isLoading}
         >
           {isLoading ? (
-            <span className="auth-spinner" />
+            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
           ) : (
             <>
-              Create account <ArrowRight size={17} className="auth-btn-icon" />
+              {" "}
+              Create account <ArrowRight size={18} />
             </>
           )}
         </button>
       </form>
 
-      <p className="auth-switch">
+      <p className="text-center text-[14px] text-gray-500 mt-8">
         Already have an account?{" "}
         {isModal ? (
           <button
             type="button"
             onClick={onSwitchToLogin}
-            className="auth-switch-link bg-transparent border-none p-0 cursor-pointer font-bold hover:underline"
+            className="text-[#e56419] font-bold hover:underline cursor-pointer"
           >
             Login
           </button>
         ) : (
-          <Link to="/login" className="auth-switch-link">
+          <Link
+            to="/login"
+            className="text-[#e56419] font-bold hover:underline"
+          >
             Login
           </Link>
         )}
@@ -314,9 +346,11 @@ export default function RegisterPage({
   if (isModal) return cardContent;
 
   return (
-    <div className="auth-bg min-h-screen flex items-center justify-center px-4 py-20">
-      <div className="auth-blob auth-blob-1" />
-      <div className="auth-blob auth-blob-2" />
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gray-50 relative overflow-hidden">
+      {/* Decorative background blobs */}
+      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-[#e56419]/10 blur-[80px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[400px] h-[400px] rounded-full bg-[#e56419]/10 blur-[80px] pointer-events-none" />
+
       {cardContent}
     </div>
   );

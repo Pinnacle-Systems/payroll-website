@@ -1,16 +1,12 @@
 import { useState, useEffect } from "react"
 import { NavLink, Outlet, useNavigate } from "react-router-dom"
-import { LayoutDashboard, Tag, Package, LogOut, Menu, X, ShieldCheck, Sun, Moon, Scale, ShoppingCart } from "lucide-react"
+import { LayoutDashboard, LogOut, Menu, X, ShieldCheck, Sun, Moon } from "lucide-react"
 import { useAppDispatch, useAppSelector } from "../../redux/Dispatch/useAppDispatch"
 import { logout, selectCurrentUser } from "../../redux/features/authSlice"
 import { useAdminTheme } from "../../hooks/useAdminTheme"
 
 const navItems = [
   { label: "Dashboard",               to: "/admin/dashboard",        icon: LayoutDashboard },
-  { label: "Product Category Master", to: "/admin/product-category", icon: Tag },
-  { label: "Product Master",          to: "/admin/product-master",   icon: Package },
-  { label: "UOM Master",              to: "/admin/uom-master",       icon: Scale },
-  { label: "Orders",                  to: "/admin/orders",           icon: ShoppingCart },
 ]
 
 export default function AdminLayout() {
@@ -106,7 +102,7 @@ export default function AdminLayout() {
         <div className="flex-1 flex flex-col min-h-screen overflow-hidden">
           {/* Top bar */}
           <header className="h-16 bg-card border-b border-border flex items-center justify-between px-6">
-            <h1 className="text-foreground font-semibold text-sm">B2 Sami Foods — Admin</h1>
+            <h1 className="text-foreground font-semibold text-sm">System Admin</h1>
 
             {/* Theme toggle */}
             <button

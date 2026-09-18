@@ -17,9 +17,9 @@ export default function AdminDashboard() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {[
-          { label: "Product Categories", value: "—", color: "text-blue-500",   bg: "bg-blue-500/10 border-blue-500/20" },
-          { label: "Products",           value: "—", color: "text-green-500",  bg: "bg-green-500/10 border-green-500/20" },
-          { label: "Orders",             value: "—", color: "text-purple-500", bg: "bg-purple-500/10 border-purple-500/20" },
+          { label: "Total Users", value: "—", color: "text-blue-500",   bg: "bg-blue-500/10 border-blue-500/20" },
+          { label: "Active Sessions", value: "—", color: "text-green-500",  bg: "bg-green-500/10 border-green-500/20" },
+          { label: "Alerts",             value: "—", color: "text-purple-500", bg: "bg-purple-500/10 border-purple-500/20" },
         ].map((card) => (
           <div key={card.label} className={`rounded-2xl border p-6 ${card.bg}`}>
             <p className={`text-sm font-medium ${card.color} opacity-80`}>{card.label}</p>

@@ -1,14 +1,19 @@
-import { Hero } from '@/components/hero';
-import { Categories } from '@/components/categories';
-import { FeaturedProducts } from '@/components/featured-products';
-import { PromoBanner } from '@/components/promo-banner';
-import { Testimonials } from '@/components/testimonials';
+import { Hero } from "@/components/hero";
+import { Features } from "@/components/features";
+import { Workflow } from "@/components/workflow";
+import Compliance from "@/components/compliance";
+import { Pricing } from "@/components/pricing";
+import { Testimonials } from "@/components/testimonials";
+
 export default function Home() {
-    return (<main className="min-h-screen">
+  return (
+    <main className="min-h-screen">
       <Hero />
-      <Categories />
-      <FeaturedProducts />
-      <PromoBanner />
-      <Testimonials />
-    </main>);
+      <Features />
+      <Workflow />
+      <Compliance />
+      <Pricing />
+      {/* <Testimonials /> */}
+    </main>
+  );
 }
