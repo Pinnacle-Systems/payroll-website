@@ -31,7 +31,7 @@ export default function Compliance() {
       <section className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Statutory Compliance */}
-          <FadeIn className="bg-white rounded-[32px] p-8 shadow-[0_12px_40px_rgba(229,100,25,0.08)] hover:shadow-[0_20px_50px_rgba(229,100,25,0.15)] transition-shadow duration-300 border border-[#ffe0cc] lg:col-span-2 group">
+          <FadeIn className="bg-white rounded-[32px] p-8 shadow-[0_12px_40px_rgba(229,100,25,0.08)] hover:shadow-[0_20px_50px_rgba(229,100,25,0.15)] hover:-translate-y-1 transition-all duration-300 border border-[#ffe0cc] lg:col-span-2 group">
             <h3 className="text-[22px] font-bold text-gray-900 mb-4 flex items-center gap-3">
               <span className="w-2 h-8 bg-[#e56419] rounded-full"></span>
               Statutory Compliance
@@ -62,7 +62,7 @@ export default function Compliance() {
           </FadeIn>
 
           {/* Accurate Payroll Records */}
-          <FadeIn delay={100} className="bg-gradient-to-br from-[#e56419] to-[#d45610] rounded-[32px] p-8 shadow-[0_8px_30px_rgba(229,100,25,0.2)] text-white">
+          <FadeIn delay={100} className="bg-gradient-to-br from-[#e56419] to-[#d45610] rounded-[32px] p-8 shadow-[0_8px_30px_rgba(229,100,25,0.2)] hover:shadow-[0_15px_40px_rgba(229,100,25,0.3)] hover:-translate-y-1 transition-all duration-300 text-white">
             <h3 className="text-[22px] font-bold mb-4">
               Accurate Payroll Records
             </h3>
@@ -93,7 +93,7 @@ export default function Compliance() {
         {/* Middle Section: 3 Columns */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Compliance Reports */}
-          <FadeIn delay={150} className="bg-white rounded-[32px] p-8 shadow-[0_8px_30px_rgba(229,100,25,0.08)] hover:shadow-[0_8px_30px_rgba(229,100,25,0.15)] transition-shadow duration-300 border border-gray-100 flex flex-col">
+          <FadeIn delay={150} className="bg-white rounded-[32px] p-8 shadow-[0_8px_30px_rgba(229,100,25,0.08)] hover:shadow-[0_8px_30px_rgba(229,100,25,0.15)] hover:-translate-y-1 transition-all duration-300 border border-gray-100 flex flex-col">
             <h3 className="text-[20px] font-bold text-gray-900 mb-3">
               Compliance Reports
             </h3>
@@ -122,7 +122,7 @@ export default function Compliance() {
 
           {/* Automated Calculations & Alerts */}
           <div className="flex flex-col gap-8">
-            <FadeIn delay={200} className="bg-white rounded-[32px] p-8 shadow-[0_8px_30px_rgba(229,100,25,0.08)] hover:shadow-[0_8px_30px_rgba(229,100,25,0.15)] transition-shadow duration-300 border border-gray-100 flex-1">
+            <FadeIn delay={200} className="bg-white rounded-[32px] p-8 shadow-[0_8px_30px_rgba(229,100,25,0.08)] hover:shadow-[0_8px_30px_rgba(229,100,25,0.15)] hover:-translate-y-1 transition-all duration-300 border border-gray-100 flex-1">
               <h3 className="text-[20px] font-bold text-gray-900 mb-3">
                 Automated Calculations
               </h3>
@@ -132,7 +132,7 @@ export default function Compliance() {
                 contributions, and tax calculations.
               </p>
             </FadeIn>
-            <FadeIn delay={250} className="bg-[#fff6f0] rounded-[32px] p-8 shadow-[0_8px_30px_rgba(229,100,25,0.1)] hover:shadow-[0_8px_30px_rgba(229,100,25,0.15)] transition-shadow duration-300 border border-[#ffe0cc] flex-1">
+            <FadeIn delay={250} className="bg-[#fff6f0] rounded-[32px] p-8 shadow-[0_8px_30px_rgba(229,100,25,0.1)] hover:shadow-[0_8px_30px_rgba(229,100,25,0.15)] hover:-translate-y-1 transition-all duration-300 border border-[#ffe0cc] flex-1">
               <h3 className="text-[20px] font-bold text-[#e56419] mb-3">
                 Compliance Alerts
               </h3>
@@ -146,7 +146,7 @@ export default function Compliance() {
 
           {/* Audit-Friendly & Built for Growing */}
           <div className="flex flex-col gap-8">
-            <FadeIn delay={300} className="bg-white rounded-[32px] p-8 shadow-[0_8px_30px_rgba(229,100,25,0.08)] hover:shadow-[0_8px_30px_rgba(229,100,25,0.15)] transition-shadow duration-300 border border-gray-100 flex-1">
+            <FadeIn delay={300} className="bg-white rounded-[32px] p-8 shadow-[0_8px_30px_rgba(229,100,25,0.08)] hover:shadow-[0_8px_30px_rgba(229,100,25,0.15)] hover:-translate-y-1 transition-all duration-300 border border-gray-100 flex-1">
               <h3 className="text-[20px] font-bold text-gray-900 mb-3">
                 Audit-Friendly Payroll
               </h3>
@@ -156,7 +156,7 @@ export default function Compliance() {
                 records for internal verification and audits.
               </p>
             </FadeIn>
-            <FadeIn delay={350} className="bg-gray-900 rounded-[32px] p-8 shadow-[0_8px_30px_rgba(229,100,25,0.2)] text-white flex-1 relative overflow-hidden">
+            <FadeIn delay={350} className="bg-gray-900 rounded-[32px] p-8 shadow-[0_8px_30px_rgba(229,100,25,0.2)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all duration-300 text-white flex-1 relative overflow-hidden">
               <div className="relative z-10">
                 <h3 className="text-[20px] font-bold text-white mb-3">
                   Built for Growing Businesses
@@ -174,7 +174,7 @@ export default function Compliance() {
         </div>
 
         {/* Bottom Banner */}
-        <FadeIn delay={100} className="bg-[#e56419] rounded-[32px] p-10 md:p-12 text-center text-white shadow-[0_8px_30px_rgba(229,100,25,0.3)] relative overflow-hidden mt-8">
+        <FadeIn delay={100} className="bg-[#e56419] rounded-[32px] p-10 md:p-12 text-center text-white shadow-[0_8px_30px_rgba(229,100,25,0.3)] hover:shadow-[0_20px_50px_rgba(229,100,25,0.4)] hover:scale-[1.01] hover:-translate-y-1 transition-all duration-300 relative overflow-hidden mt-8">
           <div className="relative z-10 max-w-3xl mx-auto">
             <h3 className="text-2xl md:text-3xl font-extrabold mb-3">
               Process payroll. Manage compliance. Stay organized.
