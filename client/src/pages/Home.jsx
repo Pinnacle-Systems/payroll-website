@@ -3,7 +3,7 @@ import { Features } from "@/components/features";
 import { Workflow } from "@/components/workflow";
 import Compliance from "@/components/compliance";
 import { Pricing } from "@/components/pricing";
-import { Testimonials } from "@/components/testimonials";
+
 
 export default function Home() {
   return (

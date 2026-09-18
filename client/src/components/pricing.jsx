@@ -6,7 +6,7 @@ import { FadeIn } from "@/components/ui/fade-in";
 export function Pricing() {
   const [isYearly, setIsYearly] = useState(false);
   return (
-    <section id="pricing" className="bg-white py-24 border-b border-gray-100 relative overflow-hidden">
+    <section id="pricing" className="bg-[#fffaf5] py-24 border-b border-[#ffe0cc] relative overflow-hidden">
       {/* Orange Shading */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-[#e56419]/10 rounded-full blur-[140px] pointer-events-none"></div>
 

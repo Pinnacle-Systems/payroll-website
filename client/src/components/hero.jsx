@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import dashboardImg from "@/assets/homepageimages/payroll-in-dashboard-1x.webp";
-import employerImg from "@/assets/homepageimages/employer-image.png";
+import employerImg from "@/assets/homepageimages/employer-image.webp";
 import employeeImg from "@/assets/homepageimages/employee-image.png";
 import widgetLeft from "@/assets/homepageimages/payroll-widget-left.svg";
 import widgetRight from "@/assets/homepageimages/payroll-widget-right.webp";
@@ -12,10 +12,12 @@ export function Hero() {
 
   return (
     <>
-      <section className="relative min-h-screen pt-32 pb-16 overflow-hidden bg-gradient-to-br from-[#fff7ef] via-[#fdfaf7] to-white">
+      <section className="relative min-h-screen pt-32 pb-16 overflow-hidden bg-white">
         <div className="w-full px-4 sm:px-6 lg:px-8 mx-auto max-w-[1440px]">
           {/* Content */}
-          <div className="text-center max-w-[900px] mx-auto space-y-7 mb-16 animate-fade-in-up">
+          <div className="text-center max-w-[900px] mx-auto space-y-7 mb-16 animate-fade-in-up relative">
+            {/* Orange Shading Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[500px] bg-[#e56419]/20 rounded-full blur-[140px] pointer-events-none -z-10"></div>
             <h1 className="text-[0.5rem] sm:text-[1.5rem] lg:text-[2.25rem] font-extrabold text-[#111827] leading-[1.1] tracking-tight">
               Payroll made easy and scalable with{" "}
               <span className="text-[#e56419]">built-in AI</span>
@@ -41,7 +43,7 @@ export function Hero() {
 
           {/* Hero Images Layout */}
           <div
-            className="relative flex justify-center items-end mt-12 w-full max-w-[1350px] mx-auto gap-6 xl:gap-8 animate-fade-in-up"
+            className="relative flex justify-center items-start mt-12 w-full max-w-[1350px] mx-auto gap-6 xl:gap-8 animate-fade-in-up"
             style={{ animationDelay: "0.15s" }}
           >
             {/* Left Column (Employer) */}
@@ -60,20 +62,6 @@ export function Hero() {
                 src={dashboardImg}
                 alt="Zoho Payroll Dashboard"
                 className="w-full h-auto drop-shadow-2xl rounded-[12px]"
-              />
-            </div>
-
-            {/* Right Column (Employee) */}
-            <div className="hidden lg:flex flex-col items-start gap-6 w-[190px] xl:w-[220px] shrink-0">
-              <img
-                src={widgetRight}
-                alt="Employee Self Service"
-                className="w-full"
-              />
-              <img
-                src={employeeImg}
-                alt="Employee Mobile App"
-                className="w-full rounded-[24px]"
               />
             </div>
           </div>

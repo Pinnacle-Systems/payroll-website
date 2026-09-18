@@ -33,7 +33,10 @@ export function Workflow() {
   ];
 
   return (
-    <section id="workflow" className="bg-white py-24 border-b border-gray-100 overflow-hidden relative">
+    <section
+      id="workflow"
+      className="bg-[#fffaf5] py-24 border-b border-[#ffe0cc] overflow-hidden relative"
+    >
       {/* Background Decor & Orange Shading */}
       <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.02] pointer-events-none"></div>
       <div className="absolute top-1/4 -left-64 w-[600px] h-[600px] bg-[#e56419]/10 rounded-full blur-[120px] pointer-events-none"></div>
@@ -61,7 +64,11 @@ export function Workflow() {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8 relative z-10">
             {steps.map((step, index) => (
-              <FadeIn delay={index * 150} key={step.id} className="relative group">
+              <FadeIn
+                delay={index * 150}
+                key={step.id}
+                className="relative group"
+              >
                 {/* Step Card */}
                 <div
                   className={`bg-white rounded-[32px] p-8 md:p-10 shadow-[0_12px_40px_rgba(229,100,25,0.08)] hover:shadow-[0_20px_50px_rgba(229,100,25,0.18)] transition-all duration-300 border border-[#ffe0cc] flex flex-col items-center text-center h-full relative z-10 hover:-translate-y-2 group-hover:border-[#e56419]/30`}
@@ -81,7 +88,7 @@ export function Workflow() {
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">
                     {step.title}
                   </h3>
                   <p className="text-gray-600 leading-relaxed text-[15px]">
