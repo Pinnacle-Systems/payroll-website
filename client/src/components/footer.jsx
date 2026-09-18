@@ -70,7 +70,7 @@ export function Footer() {
                 />
               </div>
               <span className="text-2xl font-bold tracking-tight">
-                Pinnacle <span className="text-[#e56419]">Systems</span> Payroll
+                Pinnacle <span className="text-[#e56419]">Systems</span>
               </span>
             </Link>
             <p className="text-white/70 mb-8 max-w-sm leading-relaxed">

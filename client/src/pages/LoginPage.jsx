@@ -63,7 +63,7 @@ export default function LoginPage({
       <div className="flex items-center gap-3 mb-8">
         <img src={faviconImg} alt="Logo" className="w-10 h-10 object-contain" />
         <span className="text-xl font-extrabold tracking-tight text-gray-900">
-          Pinnacle <span className="text-[#e56419]">Systems</span> Payroll
+          Pinnacle <span className="text-[#e56419]">Systems</span>
         </span>
       </div>
 
