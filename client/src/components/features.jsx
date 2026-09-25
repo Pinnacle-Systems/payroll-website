@@ -25,56 +25,56 @@ const featuresData = [
   {
     title: "Employee Management",
     description:
-      "Manage employee profiles, departments, designations, salary structures, documents, and employment details from one place.",
+      "Quickly onboard blue-collar workers, store digital documents, and manage multi-site teams from one centralized dashboard.",
     icon: <Users size={22} strokeWidth={2} />,
     image: employeeImg,
   },
   {
     title: "Attendance & Leave",
     description:
-      "Track attendance, shifts, overtime, permissions, holidays, and leave with ease.",
+      "Track daily attendance, manage leave requests, and handle overtime seamlessly. Designed for complex shift schedules and on-ground realities.",
     icon: <Clock size={22} strokeWidth={2} />,
     image: attendanceImg,
   },
   {
-    title: "Salary Processing",
+    title: "Payroll Management",
     description:
-      "Automate monthly salary calculations, earnings, deductions, overtime, incentives, and net pay.",
+      "Run accurate payroll in minutes. Automate wages, overtime, deductions, and statutory compliance with a single click.",
     icon: <CircleDollarSign size={22} strokeWidth={2} />,
     image: salaryImg,
   },
   {
-    title: "Payroll Reports",
+    title: "Custom Shift Scheduling",
     description:
-      "Get clear and detailed payroll reports including salary registers, deduction reports, department-wise payroll, and monthly summaries.",
+      "Create rotating shifts, assign workers to different sites, and manage flexible timings effortlessly.",
     icon: <PieChart size={22} strokeWidth={2} />,
     image: reportImg,
   },
   {
-    title: "Statutory Compliance",
+    title: "Biometric Integration",
     description:
-      "Simplify payroll compliance with support for PF, ESI, Professional Tax, TDS, Labour Welfare Fund, and other applicable statutory requirements.",
+      " Sync your physical biometric devices directly with Dothr. Eliminate manual data entry and prevent time theft with real-time sync.",
     icon: <ShieldCheck size={22} strokeWidth={2} />,
-    image: complianceImg,
+    image: secureImg,
   },
   {
     title: "Digital Payslips",
     description:
-      "Generate professional payslips and make them easily accessible to employees.",
+      "Instantly generate and distribute secure digital payslips to your workers via mobile or email",
     icon: <Receipt size={22} strokeWidth={2} />,
     image: payslipImg,
   },
   {
-    title: "Secure Access",
+    title: "Statutory Compliance",
     description:
-      "Control access with role-based permissions, helping keep sensitive employee and payroll information secure.",
+      " Stay 100% compliant with automated PF, ESI, PT, and TDS calculations tailored for your workforce.",
     icon: <Lock size={22} strokeWidth={2} />,
-    image: secureImg,
+    image: complianceImg,
   },
   {
-    title: "Multi-Company & Branch",
+    title: "Multi-Site Management",
     description:
-      "Manage payroll operations across multiple companies, branches, departments, and locations from a centralized system.",
+      "Manage attendance and payroll for multiple factories, sites, or branches from a single, unified account.",
     icon: <Building2 size={22} strokeWidth={2} />,
     image: multicompanyImg,
   },
@@ -93,16 +93,17 @@ export function Features() {
   }, [isPaused]);
 
   return (
-    <section id="features" className="py-24 bg-white overflow-hidden">
+    <section id="features" className="py-16 bg-white overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <FadeIn className="text-center mb-12 space-y-4 max-w-3xl mx-auto">
-          <p className="text-[#e56419] font-bold tracking-[0.2em] text-sm uppercase">
+          {/* <p className="text-[#e56419] font-bold tracking-[0.2em] text-sm uppercase">
             Employee Self-Service Portal
-          </p>
+          </p> */}
           <h2 className="text-[0.5rem] sm:text-[1.5rem] lg:text-[2.25rem] font-extrabold text-[#111827] leading-[1.15] tracking-tight">
-            Give your team a modern <br className="hidden md:block" />
-            <span className="text-[#e56419]">payroll experience</span>
+            Everything your team needs,
+            <br className="hidden md:block" />
+            <span className="text-[#e56419]">built for speed.</span>
           </h2>
         </FadeIn>
 
@@ -113,7 +114,7 @@ export function Features() {
           onMouseLeave={() => setIsPaused(false)}
         >
           {/* Tabs */}
-          <div className="flex overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] gap-3 md:gap-5 justify-start lg:justify-center border-b border-gray-200 pb-2 mb-12 relative px-4">
+          <div className="flex overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] gap-1 md:gap-3 justify-start lg:justify-center border-b border-gray-200 pb-2 mb-12 relative px-4">
             {featuresData.map((feature, idx) => (
               <button
                 key={idx}

@@ -19,14 +19,16 @@ export function Hero() {
             {/* Orange Shading Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[500px] bg-[#e56419]/20 rounded-full blur-[140px] pointer-events-none -z-10"></div>
             <h1 className="text-[0.5rem] sm:text-[1.5rem] lg:text-[2.25rem] font-extrabold text-[#111827] leading-[1.1] tracking-tight">
-              Payroll made easy and scalable with{" "}
-              <span className="text-[#e56419]">built-in AI</span>
+              Effortless HR & Payroll for the{" "}
+              <span className="text-[#e56419]">Modern Workforce.</span>
             </h1>
 
             <p className="text-[1.1rem] sm:text-[1.15rem] text-[#4b5563] max-w-3xl mx-auto leading-relaxed font-medium">
-              Your trusted payroll software is now more powerful with AI. Let
-              Zia or the AI you talk to every day work alongside your team,
-              round the clock.
+              Dot<span className="text-[#e56419]">HR</span> by Pinnacle Systems
+              is the fastest, most affordable way to manage your workforce from
+              textile factory floors to corporate offices. From biometric
+              attendance to one-click payroll, we handle the heavy lifting so
+              you can focus on growing your Business.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">

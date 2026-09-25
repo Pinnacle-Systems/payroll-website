@@ -4,7 +4,7 @@ import { Eye, EyeOff, Mail, Lock, ArrowRight, X } from "lucide-react";
 import { useLoginMutation } from "../redux/services/authApi";
 import { setCredentials } from "../redux/features/authSlice";
 import { useAppDispatch } from "../redux/Dispatch/useAppDispatch";
-import faviconImg from "../assets/favicon.png";
+import faviconImg from "../assets/pinnacle.jpg";
 
 export default function LoginPage({
   isModal = false,
@@ -61,10 +61,7 @@ export default function LoginPage({
     <div className="bg-white rounded-3xl p-8 sm:p-10 w-full max-w-[460px] shadow-2xl relative border border-gray-100">
       {/* Brand */}
       <div className="flex items-center gap-3 mb-8">
-        <img src={faviconImg} alt="Logo" className="w-10 h-10 object-contain" />
-        <span className="text-xl font-extrabold tracking-tight text-gray-900">
-          Pinnacle <span className="text-[#e56419]">Systems</span>
-        </span>
+        <img src={faviconImg} alt="Logo" className="h-14 object-contain" />
       </div>
 
       <h1 className="text-2xl font-bold text-gray-900 mb-2">Welcome back</h1>

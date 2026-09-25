@@ -221,7 +221,7 @@ export default function Compliance() {
   return (
     <div
       id="compliance"
-      className="bg-white py-14 sm:py-16 lg:py-20 relative overflow-hidden border-t border-gray-100"
+      className="bg-white py-16 relative overflow-hidden border-t border-gray-100"
     >
       {/* Background Decoration */}
       <div className="absolute top-20 right-0 w-[450px] h-[450px] bg-[#e56419]/10 rounded-full blur-[120px] pointer-events-none translate-x-1/2" />
@@ -230,9 +230,9 @@ export default function Compliance() {
       {/* Section Header */}
       <FadeIn className="px-4 sm:px-6 lg:px-8 mb-10 lg:mb-14 relative z-10">
         <div className="max-w-3xl mx-auto text-center space-y-4">
-          <p className="text-[#e56419] font-bold tracking-[0.18em] text-xs sm:text-sm uppercase">
+          {/* <p className="text-[#e56419] font-bold tracking-[0.18em] text-xs sm:text-sm uppercase">
             Seamless Compliance
-          </p>
+          </p> */}
 
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 leading-tight tracking-tight">
             Payroll Compliance{" "}
@@ -240,8 +240,8 @@ export default function Compliance() {
           </h2>
 
           <p className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
-            Simplify payroll compliance, maintain accurate records, and manage
-            statutory requirements with confidence.
+            We handle the calculations, deadlines, and paperwork so you can run
+            your business with total peace of mind.
           </p>
         </div>
       </FadeIn>
@@ -261,17 +261,17 @@ export default function Compliance() {
             </div>
 
             <p className="text-gray-600 text-sm sm:text-[15px] mb-5">
-              Manage essential payroll compliance activities with ease.
+              Manage essential payroll compliance activities with zero manual
+              math.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
-                "PF calculations & reports",
-                "ESI calculations & reports",
-                "Professional Tax management",
-                "Labour Welfare Fund tracking",
-                "Income Tax / TDS",
-                "Form 16 & tax reports",
+                "Automated PF & ESI calculations",
+                "Professional Tax (PT) deductions",
+                "TDS management & Income Tax",
+                "Labour Welfare Fund (LWF) tracking",
+                "Instant Form 16 & Tax reports",
               ].map((item, idx) => (
                 <div
                   key={idx}
@@ -298,18 +298,18 @@ export default function Compliance() {
               </h3>
 
               <p className="text-white/85 text-sm mt-2">
-                Keep employee payroll information organized in one place.
+                Keep every worker's payroll history organized, encrypted, and
+                accessible in one place.
               </p>
             </div>
 
             <ul className="space-y-3">
               {[
-                "Salary & earnings",
+                "Wages & overtime earnings",
                 "Deductions & contributions",
-                "Attendance & leave",
+                "Attendance & leave history",
                 "PF & ESI details",
-                "Tax declarations",
-                "Payslips & history",
+                "Digital payslip archive",
               ].map((item, idx) => (
                 <li
                   key={idx}
@@ -332,11 +332,12 @@ export default function Compliance() {
             className="bg-white rounded-3xl p-6 sm:p-7 shadow-[0_8px_30px_rgba(229,100,25,0.08)] hover:shadow-[0_12px_35px_rgba(229,100,25,0.14)] hover:-translate-y-1 transition-all duration-300 border border-gray-100"
           >
             <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
-              Compliance Reports
+              One-Click Reports
             </h3>
 
             <p className="text-gray-600 text-sm mb-5">
-              Generate clear reports for payroll review and filing.
+              Generate audit-ready reports for payroll review, tax filing, and
+              management.
             </p>
 
             <div className="space-y-2.5">
@@ -365,12 +366,12 @@ export default function Compliance() {
               className="bg-white rounded-3xl p-6 sm:p-7 shadow-[0_8px_30px_rgba(229,100,25,0.08)] hover:shadow-[0_12px_35px_rgba(229,100,25,0.14)] hover:-translate-y-1 transition-all duration-300 border border-gray-100 flex-1"
             >
               <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
-                Automated Calculations
+                Zero-Error Calculations
               </h3>
 
               <p className="text-gray-600 text-sm leading-relaxed">
-                Reduce manual work with automated salary, deduction,
-                contribution, and tax calculations.
+                Reduce manual work with automated wage, overtime, and tax
+                calculations.
               </p>
             </FadeIn>
 
@@ -379,12 +380,12 @@ export default function Compliance() {
               className="bg-[#fff6f0] rounded-3xl p-6 sm:p-7 shadow-[0_8px_30px_rgba(229,100,25,0.08)] hover:shadow-[0_12px_35px_rgba(229,100,25,0.14)] hover:-translate-y-1 transition-all duration-300 border border-orange-100 flex-1"
             >
               <h3 className="text-lg sm:text-xl font-bold text-[#e56419] mb-2">
-                Compliance Alerts
+                Smart Deadline Alerts
               </h3>
 
               <p className="text-gray-700 text-sm leading-relaxed">
-                Get reminders for payroll processing, statutory payments, and
-                reporting deadlines.
+                Get automatic reminders for payroll processing, statutory
+                payments, and filing deadlines.
               </p>
             </FadeIn>
           </div>
@@ -396,11 +397,11 @@ export default function Compliance() {
               className="bg-white rounded-3xl p-6 sm:p-7 shadow-[0_8px_30px_rgba(229,100,25,0.08)] hover:shadow-[0_12px_35px_rgba(229,100,25,0.14)] hover:-translate-y-1 transition-all duration-300 border border-gray-100 flex-1"
             >
               <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
-                Audit-Friendly Payroll
+                Audit-Ready History
               </h3>
 
               <p className="text-gray-600 text-sm leading-relaxed">
-                Maintain a clear history of payroll transactions and changes for
+                Maintain a clear, immutable history of payroll transactions for
                 easy review.
               </p>
             </FadeIn>
@@ -411,12 +412,12 @@ export default function Compliance() {
             >
               <div className="relative z-10">
                 <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
-                  Built for Growing Businesses
+                  Scales With You
                 </h3>
 
                 <p className="text-gray-300 text-sm leading-relaxed">
-                  Flexible payroll tools designed to support businesses of
-                  different sizes.
+                  Flexible payroll tools designed to support businesses of all
+                  sizes, from single sites to large enterprises
                 </p>
               </div>
 
@@ -436,7 +437,8 @@ export default function Compliance() {
             </h3>
 
             <p className="text-sm sm:text-base text-white/90">
-              Manage payroll and compliance with Pinnacle Payroll.
+              Experience the fastest way to manage payroll and compliance with
+              DotHR.
             </p>
           </div>
 

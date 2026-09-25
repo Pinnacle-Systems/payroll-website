@@ -10,7 +10,7 @@ const footerLinks = {
     { name: "Mobile App", href: "#" },
   ],
   resources: [
-    { name: "Payroll Calculator", href: "#" },
+    { name: "HR Templates", href: "#" },
     { name: "Compliance Guide", href: "#" },
     { name: "Help Center", href: "#" },
     { name: "API Documentation", href: "#" },
@@ -70,13 +70,14 @@ export function Footer() {
                 />
               </div>
               <span className="text-2xl font-bold tracking-tight">
-                Pinnacle <span className="text-[#e56419]">Systems</span>
+                Dot<span className="text-[#e56419]">HR</span> by Pinnacle{" "}
+                Systems
               </span>
             </Link>
-            <p className="text-white/70 mb-8 max-w-sm leading-relaxed">
-              Your trusted partner for modern payroll management. We provide the
-              best tools to help you process payroll accurately, stay compliant,
-              and scale your organization efficiently.
+            <p className="text-white/70 mb-8 max-w-sm text-justify leading-relaxed">
+              Your trusted partner for modern HR management. We provide fast,
+              affordable, and reliable tools to help you manage blue-collar
+              workforces, process payroll accurately, and stay compliant
             </p>
             <div className="flex gap-4">
               {[

@@ -1,162 +1,243 @@
 import { useState } from "react";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/ui/fade-in";
 
+const plans = [
+  {
+    name: "Silver",
+    tagline: "Small teams getting started with digital HR.",
+    monthlyPrice: null,
+    yearlyPrice: null,
+    priceLabel: "₹[XX]",
+    billingNote: "Billed monthly",
+    cta: "Get Started",
+    ctaStyle:
+      "w-full bg-white border-2 border-gray-200 text-gray-900 hover:bg-gray-50 hover:border-gray-300 py-6 text-base rounded-2xl font-bold shadow-sm cursor-pointer transition-all duration-200",
+    cardStyle:
+      "bg-white rounded-[32px] p-8 border border-gray-100 shadow-[0_8px_30px_rgba(229,100,25,0.05)] hover:shadow-[0_12px_36px_rgba(229,100,25,0.10)] transition-all duration-300",
+    checkStyle: "text-gray-400",
+    features: [
+      "Core Employee Management",
+      "Basic Attendance Tracking",
+      "Digital Payslips",
+      "Automated Statutory Deductions (PF/ESI)",
+      "Email Support",
+    ],
+    featured: false,
+  },
+  {
+    name: "Gold",
+    tagline: "Growing companies needing advanced automation.",
+    monthlyPrice: null,
+    yearlyPrice: null,
+    priceLabel: "₹[XX]",
+    billingNote: "Billed monthly",
+    badge: "Most Popular",
+    cta: "Get Started",
+    ctaStyle:
+      "w-full bg-white text-[#e56419] hover:bg-orange-50 py-6 text-base rounded-2xl font-bold shadow-lg cursor-pointer transition-all duration-200",
+    cardStyle:
+      "bg-gradient-to-b from-[#e56419] to-[#d4551a] rounded-[32px] p-8 shadow-[0_16px_50px_rgba(229,100,25,0.35)] relative md:-translate-y-5 border border-[#e56419]",
+    checkBg: "bg-white/15 rounded-full p-0.5",
+    checkStyle: "text-white",
+    textMuted: "text-white/75",
+    textPrimary: "text-white",
+    features: [
+      "Everything in Silver",
+      "Custom Shift Scheduling",
+      "Biometric Integration",
+      "Leave & Overtime Management",
+      "Priority Email & Chat Support",
+    ],
+    featured: true,
+  },
+  {
+    name: "Platinum",
+    tagline: "Large organizations with complex, multi-site needs.",
+    priceLabel: "Custom",
+    billingNote: "Contact us for pricing",
+    cta: "Contact Sales",
+    ctaStyle:
+      "w-full bg-[#111827] text-white hover:bg-gray-800 py-6 text-base rounded-2xl font-bold shadow-sm cursor-pointer transition-all duration-200",
+    cardStyle:
+      "bg-white rounded-[32px] p-8 border border-gray-100 shadow-[0_8px_30px_rgba(229,100,25,0.05)] hover:shadow-[0_12px_36px_rgba(229,100,25,0.10)] transition-all duration-300",
+    checkStyle: "text-[#e56419]",
+    features: [
+      "Everything in Gold",
+      "Multi-Site & Multi-Company Support",
+      "Dedicated Account Manager",
+      "Custom API Integrations",
+      "Premium SLA Guarantee",
+    ],
+    featured: false,
+  },
+];
+
 export function Pricing() {
   const [isYearly, setIsYearly] = useState(false);
+
   return (
-    <section id="pricing" className="bg-[#fffaf5] py-24 border-b border-[#ffe0cc] relative overflow-hidden">
+    <section
+      id="pricing"
+      className="bg-[#fffaf5] py-16 border-b border-[#ffe0cc] relative overflow-hidden"
+    >
       {/* Orange Shading */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-[#e56419]/10 rounded-full blur-[140px] pointer-events-none"></div>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-[#e56419]/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <FadeIn className="text-center mb-16 space-y-4">
-          <p className="text-[#e56419] font-bold tracking-[0.2em] text-sm uppercase">
+        <FadeIn className="text-center mb-14 space-y-4">
+          <p className="text-[#e56419] font-bold tracking-[0.2em] text-xs sm:text-sm uppercase">
             Pricing
           </p>
-          <h2 className="text-[0.5rem] sm:text-[1.5rem] lg:text-[2.25rem] font-extrabold text-[#111827] leading-tight tracking-tight">
-            Simple, transparent <span className="text-[#e56419]">pricing</span>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#111827] leading-tight tracking-tight">
+            Simple, transparent{" "}
+            <span className="text-[#e56419]">pricing.</span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
-            Choose the perfect plan for your business needs. No hidden fees,
-            cancel anytime.
+          <p className="text-base sm:text-lg text-gray-600 leading-relaxed max-w-xl mx-auto">
+            Choose the perfect plan for your business needs.
           </p>
 
           {/* Billing Toggle */}
-          <div className="flex items-center justify-center gap-3 pt-6">
-            <span className={`text-[15px] font-medium ${!isYearly ? 'text-gray-900' : 'text-gray-500'}`}>Monthly</span>
-            <button 
-              onClick={() => setIsYearly(!isYearly)}
-              className="relative inline-flex h-7 w-14 items-center rounded-full bg-[#e56419] transition-colors focus:outline-none cursor-pointer"
+          <div className="flex items-center justify-center gap-3 pt-4">
+            <span
+              className={`text-[15px] font-semibold transition-colors ${
+                !isYearly ? "text-gray-900" : "text-gray-400"
+              }`}
             >
-              <span className={`inline-block h-5 w-5 transform rounded-full bg-white transition-transform ${isYearly ? 'translate-x-8' : 'translate-x-1'}`} />
+              Monthly
+            </span>
+            <button
+              onClick={() => setIsYearly(!isYearly)}
+              className="relative inline-flex h-7 w-14 items-center rounded-full bg-[#e56419] transition-colors focus:outline-none cursor-pointer shadow-inner"
+            >
+              <span
+                className={`inline-block h-5 w-5 transform rounded-full bg-white shadow transition-transform duration-200 ${
+                  isYearly ? "translate-x-8" : "translate-x-1"
+                }`}
+              />
             </button>
-            <span className={`text-[15px] font-medium flex items-center gap-2 ${isYearly ? 'text-gray-900' : 'text-gray-500'}`}>
+            <span
+              className={`text-[15px] font-semibold flex items-center gap-2 transition-colors ${
+                isYearly ? "text-gray-900" : "text-gray-400"
+              }`}
+            >
               Yearly
-              <span className="bg-[#faedd8] text-[#e56419] text-[11px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">Save 16%</span>
+              <span className="bg-[#faedd8] text-[#e56419] text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide inline-flex items-center gap-1">
+                <Sparkles size={10} />
+                Save 10%
+              </span>
             </span>
           </div>
         </FadeIn>
 
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
-          {/* Essential Plan */}
-          <FadeIn delay={100} className="bg-white rounded-[32px] p-8 md:p-10 border border-gray-100 shadow-[0_8px_30px_rgba(229,100,25,0.05)] hover:shadow-[0_8px_30px_rgba(229,100,25,0.12)] transition-shadow duration-300">
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">Essential</h3>
-            <p className="text-gray-600 mb-6 text-[15px]">
-              Perfect for small teams getting started.
-            </p>
-            <div className="mb-8">
-              <span className="text-4xl font-extrabold text-gray-900">
-                {isYearly ? "₹500" : "₹50"}
-              </span>
-              <span className="text-gray-500 font-medium">
-                {" "}
-                / employee / {isYearly ? "year" : "month"}
-              </span>
-              <p className="text-gray-500 text-sm mt-2">
-                {isYearly ? "Billed annually" : "Billed monthly"}
-              </p>
-            </div>
-            <ul className="space-y-4 mb-8">
-              {[
-                "Basic payroll processing",
-                "Automated statutory deductions",
-                "Direct bank deposits",
-                "Employee self-service portal",
-                "Email support",
-              ].map((feature, idx) => (
-                <li key={idx} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-gray-400 shrink-0 mt-0.5" />
-                  <span className="text-gray-700">{feature}</span>
-                </li>
-              ))}
-            </ul>
-            <Button className="w-full bg-white border border-gray-300 text-gray-900 hover:bg-gray-100 py-6 text-lg rounded-xl font-bold shadow-sm cursor-pointer">
-              Get Started
-            </Button>
-          </FadeIn>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto items-center">
+          {plans.map((plan, idx) => (
+            <FadeIn
+              key={idx}
+              delay={idx * 80}
+              className={plan.cardStyle}
+            >
+              {/* Most Popular Badge */}
+              {plan.badge && (
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <span className="bg-gray-900 text-white text-[11px] font-bold uppercase tracking-wider py-1.5 px-4 rounded-full shadow-md">
+                    {plan.badge}
+                  </span>
+                </div>
+              )}
 
-          {/* Professional Plan (Highlighted) */}
-          <FadeIn delay={150} className="bg-[#e56419] rounded-[32px] p-8 md:p-10 shadow-[0_8px_30px_rgba(229,100,25,0.3)] relative transform md:-translate-y-4 border border-[#e56419]">
-            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <span className="bg-gray-900 text-white text-xs font-bold uppercase tracking-wider py-1.5 px-4 rounded-full">
-                Most Popular
-              </span>
-            </div>
-            <h3 className="text-2xl font-bold text-white mb-2">Professional</h3>
-            <p className="text-white/80 mb-6 text-[15px]">
-              Best for growing companies.
-            </p>
-            <div className="mb-8 text-white">
-              <span className="text-4xl font-extrabold">
-                {isYearly ? "₹750" : "₹75"}
-              </span>
-              <span className="text-white/80 font-medium">
-                {" "}
-                / employee / {isYearly ? "year" : "month"}
-              </span>
-              <p className="text-white/80 text-sm mt-2">
-                {isYearly ? "Billed annually" : "Billed monthly"}
-              </p>
-            </div>
-            <ul className="space-y-4 mb-8">
-              {[
-                "Everything in Essential",
-                "Leave & attendance management",
-                "Multi-level approvals",
-                "Custom payroll reports",
-                "Priority email & chat support",
-              ].map((feature, idx) => (
-                <li key={idx} className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center shrink-0 mt-0.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-white" />
-                  </div>
-                  <span className="text-white font-medium">{feature}</span>
-                </li>
-              ))}
-            </ul>
-            <Button className="w-full bg-white text-[#e56419] hover:bg-gray-50 py-6 text-lg rounded-xl font-bold shadow-lg cursor-pointer">
-              Get Started
-            </Button>
-          </FadeIn>
+              {/* Plan name */}
+              <h3
+                className={`text-2xl font-extrabold mb-1 ${
+                  plan.featured ? "text-white" : "text-gray-900"
+                }`}
+              >
+                {plan.name}
+              </h3>
 
-          {/* Enterprise Plan */}
-          <FadeIn delay={200} className="bg-white rounded-[32px] p-8 md:p-10 border border-gray-100 shadow-[0_8px_30px_rgba(229,100,25,0.05)] hover:shadow-[0_8px_30px_rgba(229,100,25,0.12)] transition-shadow duration-300">
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">
-              Enterprise
-            </h3>
-            <p className="text-gray-600 mb-6 text-[15px]">
-              For large organizations.
-            </p>
-            <div className="mb-8">
-              <span className="text-4xl font-extrabold text-gray-900">
-                Custom
-              </span>
-              <p className="text-gray-500 text-sm mt-2">
-                Contact us for pricing
+              {/* Tagline */}
+              <p
+                className={`text-sm mb-6 leading-relaxed ${
+                  plan.featured ? "text-white/75" : "text-gray-500"
+                }`}
+              >
+                {plan.tagline}
               </p>
-            </div>
-            <ul className="space-y-4 mb-8">
-              {[
-                "Everything in Professional",
-                "Dedicated account manager",
-                "Custom API integrations",
-                "Advanced access control",
-                "Premium SLA guarantee",
-              ].map((feature, idx) => (
-                <li key={idx} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-gray-400 shrink-0 mt-0.5" />
-                  <span className="text-gray-700">{feature}</span>
-                </li>
-              ))}
-            </ul>
-            <Button className="w-full bg-white border border-gray-300 text-gray-900 hover:bg-gray-100 py-6 text-lg rounded-xl font-bold shadow-sm">
-              Contact Sales
-            </Button>
-          </FadeIn>
+
+              {/* Price */}
+              <div className="mb-7">
+                <div className="flex items-end gap-1">
+                  <span
+                    className={`text-4xl font-black leading-none ${
+                      plan.featured ? "text-white" : "text-gray-900"
+                    }`}
+                  >
+                    {plan.priceLabel === "Custom"
+                      ? "Custom"
+                      : isYearly
+                      ? plan.priceLabel
+                      : plan.priceLabel}
+                  </span>
+                  {plan.priceLabel !== "Custom" && (
+                    <span
+                      className={`text-sm font-medium mb-1 ${
+                        plan.featured ? "text-white/70" : "text-gray-500"
+                      }`}
+                    >
+                      / employee / {isYearly ? "year" : "month"}
+                    </span>
+                  )}
+                </div>
+                <p
+                  className={`text-xs mt-2 font-medium ${
+                    plan.featured ? "text-white/60" : "text-gray-400"
+                  }`}
+                >
+                  {plan.billingNote}
+                </p>
+              </div>
+
+              {/* Divider */}
+              <div
+                className={`h-px mb-6 ${
+                  plan.featured ? "bg-white/20" : "bg-gray-100"
+                }`}
+              />
+
+              {/* Features */}
+              <ul className="space-y-3.5 mb-8">
+                {plan.features.map((feature, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <div
+                      className={`shrink-0 mt-0.5 ${
+                        plan.featured ? "bg-white/15 rounded-full p-0.5" : ""
+                      }`}
+                    >
+                      <CheckCircle2
+                        className={`w-4 h-4 ${plan.checkStyle}`}
+                        strokeWidth={2.5}
+                      />
+                    </div>
+                    <span
+                      className={`text-sm leading-snug ${
+                        plan.featured
+                          ? "text-white font-medium"
+                          : "text-gray-700"
+                      }`}
+                    >
+                      {feature}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* CTA */}
+              <Button className={plan.ctaStyle}>{plan.cta}</Button>
+            </FadeIn>
+          ))}
         </div>
       </div>
     </section>
