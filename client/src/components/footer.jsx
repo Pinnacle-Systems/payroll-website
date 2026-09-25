@@ -64,11 +64,11 @@ export function Footer() {
           <div className="col-span-2 lg:col-span-2">
             <Link to="/" className="flex items-center gap-3 mb-6">
               <span className="text-2xl font-bold tracking-tight">
-                Dot<span className="text-[#e56419]">HR</span> by
+                Dot<span className="text-[#e56419]">HR</span>
               </span>
-              <div className="flex items-center group mr-8">
+              {/* <div className="flex items-center group mr-8">
                 <img src={logo} alt="Logo" className="h-14 object-contain" />
-              </div>
+              </div> */}
             </Link>
             <p className="text-white/70 mb-8 max-w-sm text-justify leading-relaxed">
               Your trusted partner for modern HR management. We provide fast,
