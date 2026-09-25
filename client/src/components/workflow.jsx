@@ -5,9 +5,9 @@ export function Workflow() {
   const steps = [
     {
       id: 1,
-      title: "Onboard Your Workers",
+      title: "Onboard Your Employees",
       description:
-        "Import your existing employee data or onboard new hires in minutes. Set up their wage structures and shift profiles instantly.",
+        "Import your existing employee data or onboard new hires in minutes. Set up their pay structures and shift profiles instantly.",
       icon: UserPlus,
       color: "bg-blue-50 text-blue-600 border-blue-200",
       iconBg: "bg-blue-600",
@@ -15,8 +15,14 @@ export function Workflow() {
     {
       id: 2,
       title: "Sync Biometrics & Track Time",
-      description:
-        "Connect your biometric devices. Dothr automatically tracks daily attendance, overtime, and leave requests, syncing data directly for payroll.",
+      description: (
+        <span>
+          Connect your biometric devices. Dot.
+          <span className="text-[#e56419]">HR</span> automatically tracks daily
+          attendance, overtime, and leave requests, syncing data directly for
+          payroll.
+        </span>
+      ),
       icon: CalendarDays,
       color: "bg-purple-50 text-purple-600 border-purple-200",
       iconBg: "bg-purple-600",
@@ -24,8 +30,13 @@ export function Workflow() {
     {
       id: 3,
       title: "Run Payroll & Pay",
-      description:
-        "With one click, Dothr calculates wages, overtime, and statutory deductions, and processes direct deposits. Done.",
+      description: (
+        <span>
+          With one click, Dot.
+          <span className="text-[#e56419]">HR</span> calculates earnings,
+          overtime, and statutory deductions, and processes direct deposits.
+        </span>
+      ),
       icon: Calculator,
       color: "bg-[#fff6f0] text-[#e56419] border-[#ffe0cc]",
       iconBg: "bg-[#e56419]",
@@ -49,13 +60,14 @@ export function Workflow() {
            
           </p> */}
           <h2 className="text-[0.5rem] sm:text-[1.5rem] lg:text-[2.25rem] font-extrabold text-[#111827] leading-tight tracking-tight">
-            Simplify HR. Automate the busy work. Empower your{" "}
+            Simplify HR. Automate the process. Empower your{" "}
             <span className="text-[#e56419]"> workforce.</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
-            How Dot<span className="text-[#e56419]">HR</span> Works A seamless
-            process from onboarding to payday. Built to be faster and easier
-            than traditional HR software
+            How Dot<span className="text-[1.6rem]">.</span>
+            <span className="text-[#e56419]">HR</span> Works A seamless process
+            from onboarding to payout. Built to be faster and easier than
+            traditional HR software
           </p>
         </FadeIn>
 

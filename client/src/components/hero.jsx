@@ -24,8 +24,9 @@ export function Hero() {
             </h1>
 
             <p className="text-[1.1rem] sm:text-[1.15rem] text-[#4b5563] max-w-3xl mx-auto leading-relaxed font-medium">
-              Dot<span className="text-[#e56419]">HR</span> by Pinnacle Systems
-              is the fastest, most affordable way to manage your workforce from
+              Dot<span className="text-[1.6rem]">.</span>
+              <span className="text-[#e56419]">HR</span> by Pinnacle Systems is
+              the fastest, most affordable way to manage your workforce from
               textile factory floors to corporate offices. From biometric
               attendance to one-click payroll, we handle the heavy lifting so
               you can focus on growing your Business.

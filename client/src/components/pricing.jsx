@@ -41,7 +41,7 @@ const plans = [
     ctaStyle:
       "w-full bg-white border-2 border-gray-200 text-gray-900 hover:bg-gray-50 hover:border-gray-300 py-6 text-base rounded-2xl font-bold shadow-sm cursor-pointer transition-all duration-200",
     cardStyle:
-      "bg-white rounded-[32px] p-8 border border-gray-100 shadow-[0_8px_30px_rgba(229,100,25,0.05)] hover:shadow-[0_12px_36px_rgba(229,100,25,0.10)] transition-all duration-300",
+      "bg-white rounded-[32px] p-8 border border-gray-100 shadow-[0_8px_30px_rgba(229,100,25,0.05)] hover:shadow-[0_12px_36px_rgba(229,100,25,0.10)] transition-all duration-300 h-full flex flex-col",
     checkStyle: "text-gray-400",
     features: [
       "Core Employee Management",
@@ -60,7 +60,7 @@ const plans = [
     ctaStyle:
       "w-full bg-white text-[#e56419] hover:bg-orange-50 py-6 text-base rounded-2xl font-bold shadow-lg cursor-pointer transition-all duration-200",
     cardStyle:
-      "bg-gradient-to-b from-[#e56419] to-[#d4551a] rounded-[32px] p-8 shadow-[0_16px_50px_rgba(229,100,25,0.35)] relative md:-translate-y-5 border border-[#e56419]",
+      "bg-gradient-to-b from-[#e56419] to-[#d4551a] rounded-[32px] p-8 shadow-[0_16px_50px_rgba(229,100,25,0.35)] relative md:-translate-y-5 border border-[#e56419] h-full flex flex-col",
     checkStyle: "text-white",
     features: [
       "Everything in Silver",
@@ -76,10 +76,10 @@ const plans = [
     tagline: "Large organizations with complex, multi-site needs.",
     cta: "Get Started",
     ctaStyle:
-      "w-full bg-[#111827] text-white hover:bg-gray-800 py-6 text-base rounded-2xl font-bold shadow-sm cursor-pointer transition-all duration-200",
+      "w-full bg-white border-2 border-gray-200 text-gray-900 hover:bg-gray-50 hover:border-gray-300 py-6 text-base rounded-2xl font-bold shadow-sm cursor-pointer transition-all duration-200",
     cardStyle:
-      "bg-white rounded-[32px] p-8 border border-gray-100 shadow-[0_8px_30px_rgba(229,100,25,0.05)] hover:shadow-[0_12px_36px_rgba(229,100,25,0.10)] transition-all duration-300",
-    checkStyle: "text-[#e56419]",
+      "bg-white rounded-[32px] p-8 border border-gray-100 shadow-[0_8px_30px_rgba(229,100,25,0.05)] hover:shadow-[0_12px_36px_rgba(229,100,25,0.10)] transition-all duration-300 h-full flex flex-col",
+    checkStyle: "text-gray-400",
     features: [
       "Everything in Gold",
       "Multi-Site & Multi-Company Support",
@@ -150,7 +150,7 @@ export function Pricing() {
         </FadeIn>
 
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto items-stretch">
           {plans.map((plan, idx) => {
             const priceData = PRICES[plan.name]?.[period];
             return (
@@ -238,7 +238,7 @@ export function Pricing() {
                 />
 
                 {/* Features */}
-                <ul className="space-y-3.5 mb-8">
+                <ul className="space-y-3.5 mb-8 flex-grow">
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <div

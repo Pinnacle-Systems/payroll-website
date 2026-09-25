@@ -270,8 +270,8 @@ export default function Compliance() {
                 "Automated PF & ESI calculations",
                 "Professional Tax (PT) deductions",
                 "TDS management & Income Tax",
-                "Labour Welfare Fund (LWF) tracking",
-                "Instant Form 16 & Tax reports",
+                // "Labour Welfare Fund (LWF) tracking",
+                // "Instant Form 16 & Tax reports",
               ].map((item, idx) => (
                 <div
                   key={idx}
@@ -298,14 +298,14 @@ export default function Compliance() {
               </h3>
 
               <p className="text-white/85 text-sm mt-2">
-                Keep every worker's payroll history organized, encrypted, and
+                Keep every employees payroll history organized, encrypted, and
                 accessible in one place.
               </p>
             </div>
 
             <ul className="space-y-3">
               {[
-                "Wages & overtime earnings",
+                "Salary & OT earnings",
                 "Deductions & contributions",
                 "Attendance & leave history",
                 "PF & ESI details",
@@ -370,7 +370,7 @@ export default function Compliance() {
               </h3>
 
               <p className="text-gray-600 text-sm leading-relaxed">
-                Reduce manual work with automated wage, overtime, and tax
+                Reduce manual work with automated earnings, overtime, and tax
                 calculations.
               </p>
             </FadeIn>
@@ -417,7 +417,7 @@ export default function Compliance() {
 
                 <p className="text-gray-300 text-sm leading-relaxed">
                   Flexible payroll tools designed to support businesses of all
-                  sizes, from single sites to large enterprises
+                  sizes, from small and medium to large enterprises
                 </p>
               </div>
 
@@ -433,7 +433,7 @@ export default function Compliance() {
         >
           <div className="relative z-10 max-w-2xl mx-auto">
             <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold mb-2">
-              Simplify Payroll. Stay Compliant.
+              Simplify Payroll. Streamline Compliance.
             </h3>
 
             <p className="text-sm sm:text-base text-white/90">
