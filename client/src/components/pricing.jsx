@@ -7,9 +7,9 @@ const plans = [
   {
     name: "Silver",
     tagline: "Small teams getting started with digital HR.",
-    monthlyPrice: null,
-    yearlyPrice: null,
-    priceLabel: "₹[XX]",
+    monthlyPrice: "₹49",
+    yearlyPrice: "₹490",
+    priceLabel: "₹49",
     billingNote: "Billed monthly",
     cta: "Get Started",
     ctaStyle:
@@ -29,9 +29,9 @@ const plans = [
   {
     name: "Gold",
     tagline: "Growing companies needing advanced automation.",
-    monthlyPrice: null,
-    yearlyPrice: null,
-    priceLabel: "₹[XX]",
+    monthlyPrice: "₹99",
+    yearlyPrice: "₹990",
+    priceLabel: "₹99",
     billingNote: "Billed monthly",
     badge: "Most Popular",
     cta: "Get Started",
@@ -178,8 +178,8 @@ export function Pricing() {
                     {plan.priceLabel === "Custom"
                       ? "Custom"
                       : isYearly
-                      ? plan.priceLabel
-                      : plan.priceLabel}
+                      ? plan.yearlyPrice
+                      : plan.monthlyPrice}
                   </span>
                   {plan.priceLabel !== "Custom" && (
                     <span
