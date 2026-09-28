@@ -235,13 +235,14 @@ export default function Compliance() {
           </p> */}
 
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 leading-tight tracking-tight">
-            Payroll Compliance{" "}
-            <span className="text-[#e56419]">Made Simple</span>
+            Streamline Payroll.
+            <span className="text-[#e56419]"> Strengthen Compliance.</span>
           </h2>
 
           <p className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
-            We handle the calculations, deadlines, and paperwork so you can run
-            your business with total peace of mind.
+            Automate complex payroll processes and compliance requirements to
+            drive greater efficiency, transparency, and scalability across your
+            organization.
           </p>
         </div>
       </FadeIn>
