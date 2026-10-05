@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FadeIn } from "@/components/ui/fade-in";
 import {
   Users,
@@ -25,56 +25,62 @@ const featuresData = [
   {
     title: "Employee Management",
     description:
-      "Manage employee profiles, departments, designations, salary structures, documents, and employment details from one place.",
+      "Quickly onboard blue-collar workers, store digital documents, and manage multi-site teams from one centralized dashboard.",
     icon: <Users size={22} strokeWidth={2} />,
     image: employeeImg,
   },
   {
     title: "Attendance & Leave",
     description:
-      "Track attendance, shifts, overtime, permissions, holidays, and leave with ease.",
+      "Track daily attendance, manage leave requests, and handle overtime seamlessly. Designed for complex shift schedules and on-ground realities.",
     icon: <Clock size={22} strokeWidth={2} />,
     image: attendanceImg,
   },
   {
-    title: "Salary Processing",
+    title: "Payroll Management",
     description:
-      "Automate monthly salary calculations, earnings, deductions, overtime, incentives, and net pay.",
+      "Run accurate payroll in minutes. Automate earnings, overtime, deductions, and statutory compliance with in single click.",
     icon: <CircleDollarSign size={22} strokeWidth={2} />,
     image: salaryImg,
   },
   {
-    title: "Payroll Reports",
+    title: "Custom Shift Scheduling",
     description:
-      "Get clear and detailed payroll reports including salary registers, deduction reports, department-wise payroll, and monthly summaries.",
+      "Create rotating shifts, assign employees to different sites, and manage flexible timings effortlessly.",
     icon: <PieChart size={22} strokeWidth={2} />,
     image: reportImg,
   },
   {
-    title: "Statutory Compliance",
-    description:
-      "Simplify payroll compliance with support for PF, ESI, Professional Tax, TDS, Labour Welfare Fund, and other applicable statutory requirements.",
+    title: "Biometric Integration",
+    description: (
+      <span>
+        {" "}
+        Sync your physical biometric devices directly with Dot.
+        <span className="text-[#e56419]">HR</span>. Eliminate manual data entry
+        and prevent time manipulate with real-time sync.
+      </span>
+    ),
     icon: <ShieldCheck size={22} strokeWidth={2} />,
-    image: complianceImg,
+    image: secureImg,
   },
   {
     title: "Digital Payslips",
     description:
-      "Generate professional payslips and make them easily accessible to employees.",
+      "Instantly generate and distribute secure digital payslips to your employees via mobile or email",
     icon: <Receipt size={22} strokeWidth={2} />,
     image: payslipImg,
   },
   {
-    title: "Secure Access",
+    title: "Statutory Compliance",
     description:
-      "Control access with role-based permissions, helping keep sensitive employee and payroll information secure.",
+      "Simplify payroll compliance with automated PF, ESI, PT, and TDS calculations tailored to your workforce.",
     icon: <Lock size={22} strokeWidth={2} />,
-    image: secureImg,
+    image: complianceImg,
   },
   {
-    title: "Multi-Company & Branch",
+    title: "Multi-Site Management",
     description:
-      "Manage payroll operations across multiple companies, branches, departments, and locations from a centralized system.",
+      "Manage attendance and payroll for multiple factories, sites, or branches from a single, unified account.",
     icon: <Building2 size={22} strokeWidth={2} />,
     image: multicompanyImg,
   },
@@ -82,38 +88,26 @@ const featuresData = [
 
 export function Features() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-
-  useEffect(() => {
-    if (isPaused) return;
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % featuresData.length);
-    }, 4500);
-    return () => clearInterval(interval);
-  }, [isPaused]);
 
   return (
-    <section id="features" className="py-24 bg-white overflow-hidden">
+    <section id="features" className="py-16 bg-white overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <FadeIn className="text-center mb-12 space-y-4 max-w-3xl mx-auto">
-          <p className="text-[#e56419] font-bold tracking-[0.2em] text-sm uppercase">
+          {/* <p className="text-[#e56419] font-bold tracking-[0.2em] text-sm uppercase">
             Employee Self-Service Portal
-          </p>
+          </p> */}
           <h2 className="text-[0.5rem] sm:text-[1.5rem] lg:text-[2.25rem] font-extrabold text-[#111827] leading-[1.15] tracking-tight">
-            Give your team a modern <br className="hidden md:block" />
-            <span className="text-[#e56419]">payroll experience</span>
+            Everything your team needs,
+            <br className="hidden md:block" />
+            <span className="text-[#e56419]">built for speed.</span>
           </h2>
         </FadeIn>
 
         {/* Carousel Container */}
-        <div
-          className="relative w-full"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
+        <div className="relative w-full">
           {/* Tabs */}
-          <div className="flex overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] gap-3 md:gap-5 justify-start lg:justify-center border-b border-gray-200 pb-2 mb-12 relative px-4">
+          <div className="flex overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] gap-1 md:gap-3 justify-start lg:justify-center border-b border-gray-200 pb-2 mb-12 relative px-4">
             {featuresData.map((feature, idx) => (
               <button
                 key={idx}
@@ -289,7 +283,7 @@ export function Features() {
         </div>
 
         {/* Bottom Banner */}
-        <FadeIn delay={200} className="mt-20 max-w-5xl mx-auto">
+        {/* <FadeIn delay={200} className="mt-20 max-w-5xl mx-auto">
           <div className="bg-[#f8f9fa] rounded-[32px] p-8 md:p-12 text-center border border-gray-100 relative overflow-hidden group hover:shadow-lg transition-shadow duration-500">
             <div className="absolute -top-24 -left-24 w-64 h-64 bg-[#e56419]/5 rounded-full blur-[60px] group-hover:bg-[#e56419]/10 transition-colors duration-500" />
             <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-[#e56419]/5 rounded-full blur-[60px] group-hover:bg-[#e56419]/10 transition-colors duration-500" />
@@ -297,10 +291,10 @@ export function Features() {
             <h3 className="relative z-10 text-[1.5rem] font-bold text-gray-900 tracking-tight">
               Simplify payroll. Automate routine work.{" "}
               <br className="hidden md:block" />
-              <span className="text-[#e56419]">Empower your people.</span>
+              <span className="text-[#e56419]">Empower your workforce.</span>
             </h3>
           </div>
-        </FadeIn>
+        </FadeIn> */}
       </div>
     </section>
   );

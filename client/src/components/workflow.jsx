@@ -5,27 +5,38 @@ export function Workflow() {
   const steps = [
     {
       id: 1,
-      title: "Employee Onboarding",
+      title: "Onboard Your Employees",
       description:
-        "Easily onboard new hires, securely collect necessary documents, and set up their payroll profiles in minutes.",
+        "Import your existing employee data or onboard new hires in minutes. Set up their pay structures and shift profiles instantly.",
       icon: UserPlus,
       color: "bg-blue-50 text-blue-600 border-blue-200",
       iconBg: "bg-blue-600",
     },
     {
       id: 2,
-      title: "Leave & Attendance",
-      description:
-        "Track daily attendance, manage leave requests seamlessly, and automatically sync data for payroll calculations.",
+      title: "Sync Biometrics & Track Time",
+      description: (
+        <span>
+          Connect your biometric devices. Dot.
+          <span className="text-[#e56419]">HR</span> automatically tracks daily
+          attendance, overtime, and leave requests, syncing data directly for
+          payroll.
+        </span>
+      ),
       icon: CalendarDays,
       color: "bg-purple-50 text-purple-600 border-purple-200",
       iconBg: "bg-purple-600",
     },
     {
       id: 3,
-      title: "Payroll Process",
-      description:
-        "Run payroll with a single click. Automate statutory deductions, tax calculations, and process direct deposits.",
+      title: "Run Payroll & Pay",
+      description: (
+        <span>
+          With one click, Dot.
+          <span className="text-[#e56419]">HR</span> calculates earnings,
+          overtime, and statutory deductions, and processes direct deposits.
+        </span>
+      ),
       icon: Calculator,
       color: "bg-[#fff6f0] text-[#e56419] border-[#ffe0cc]",
       iconBg: "bg-[#e56419]",
@@ -35,7 +46,7 @@ export function Workflow() {
   return (
     <section
       id="workflow"
-      className="bg-[#fffaf5] py-24 border-b border-[#ffe0cc] overflow-hidden relative"
+      className="bg-[#fffaf5] py-16 border-b border-[#ffe0cc] overflow-hidden relative"
     >
       {/* Background Decor & Orange Shading */}
       <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.02] pointer-events-none"></div>
@@ -45,15 +56,18 @@ export function Workflow() {
       <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <FadeIn className="text-center mb-20 space-y-4">
-          <p className="text-[#e56419] font-bold tracking-[0.2em] text-sm uppercase">
-            Simple Workflow
-          </p>
+          {/* <p className="text-[#e56419] font-bold tracking-[0.2em] text-sm uppercase">
+           
+          </p> */}
           <h2 className="text-[0.5rem] sm:text-[1.5rem] lg:text-[2.25rem] font-extrabold text-[#111827] leading-tight tracking-tight">
-            How Pinnacle <span className="text-[#e56419]">Systems</span> Works
+            Simplify HR. Automate the process. Empower your{" "}
+            <span className="text-[#e56419]"> workforce.</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
-            A streamlined process from onboarding to payday. Manage your
-            workforce effortlessly.
+            How Dot<span className="text-[1.6rem]">.</span>
+            <span className="text-[#e56419]">HR</span> Works A seamless process
+            from onboarding to payout. Built to be faster and easier than
+            traditional HR software
           </p>
         </FadeIn>
 

@@ -1,6 +1,12 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+/* Offset anchor scroll for fixed navbar (~72px) + breathing room */
+section[id],
+div[id] {
+  scroll-margin-top: 58px;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
