@@ -1,5 +1,0 @@
--- AlterTable
-ALTER TABLE "User" ADD COLUMN     "mobile" TEXT,
-ALTER COLUMN "name" DROP NOT NULL,
-ALTER COLUMN "createdAt" DROP NOT NULL,
-ALTER COLUMN "updatedAt" DROP NOT NULL;

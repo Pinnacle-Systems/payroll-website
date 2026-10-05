@@ -9,6 +9,8 @@ import {
   Phone,
   ArrowRight,
   Check,
+  Building,
+  FileText,
 } from "lucide-react";
 import { useRegisterMutation } from "../redux/services/authApi";
 import { setCredentials } from "../redux/features/authSlice";
@@ -32,8 +34,10 @@ export default function RegisterPage({
   const [showConfirm, setShowConfirm] = useState(false);
   const [form, setForm] = useState({
     name: "",
-    mobile: "",
     email: "",
+    companyName: "",
+    gst: "",
+    mobile: "",
     password: "",
     confirm: "",
   });
@@ -44,6 +48,8 @@ export default function RegisterPage({
   const validate = () => {
     const errs = {};
     if (!form.name.trim()) errs.name = "Full name is required";
+    if (!form.companyName.trim()) errs.companyName = "Company name is required";
+    if (!form.gst.trim()) errs.gst = "GST is required";
     if (!form.mobile) {
       errs.mobile = "Mobile number is required";
     } else if (!/^\d{10}$/.test(form.mobile)) {
@@ -57,6 +63,7 @@ export default function RegisterPage({
     if (!form.confirm) errs.confirm = "Please confirm your password";
     else if (form.confirm !== form.password)
       errs.confirm = "Passwords do not match";
+
     return errs;
   };
 
@@ -73,6 +80,8 @@ export default function RegisterPage({
       const result = await addData({
         name: form.name,
         email: form.email,
+        companyName: form.companyName,
+        gst: form.gst,
         mobile: form.mobile,
         password: form.password,
       }).unwrap();
@@ -95,9 +104,9 @@ export default function RegisterPage({
   };
 
   const cardContent = (
-    <div className="bg-white rounded-3xl p-8 sm:p-10 w-full max-w-[600px] shadow-2xl relative border border-gray-100">
+    <div className="bg-white rounded-3xl p-6  w-full max-w-[700px] shadow-2xl relative border border-gray-100">
       {/* Brand */}
-      <div className="flex items-center gap-3 mb-8">
+      <div className="flex items-center gap-3 mb-4">
         <img src={faviconImg} alt="Logo" className="h-14 object-contain" />
       </div>
 
@@ -149,6 +158,64 @@ export default function RegisterPage({
           )}
         </div>
 
+        {/* Company Name */}
+        <div className="flex flex-col gap-2">
+          <label
+            htmlFor="reg-companyName"
+            className="text-[14px] font-semibold text-gray-700"
+          >
+            Company name
+          </label>
+          <div
+            className={`flex items-center gap-3 bg-gray-50 border ${errors.companyName ? "border-red-400 focus-within:border-red-500 focus-within:ring-red-500/20" : "border-gray-200 focus-within:border-[#e56419] focus-within:ring-[#e56419]/20"} focus-within:ring-4 rounded-xl px-4 h-12 transition-all`}
+          >
+            <Building size={18} className="text-gray-400 shrink-0" />
+            <input
+              id="reg-companyName"
+              name="companyName"
+              type="text"
+              autoComplete="companyName"
+              placeholder="you@company.com"
+              value={form.companyName}
+              onChange={handleChange}
+              className="flex-1 bg-transparent border-none outline-none text-[15px] text-gray-900 placeholder:text-gray-400"
+            />
+          </div>
+          {errors.companyName && (
+            <span className="text-red-500 text-xs font-medium mt-1">
+              {errors.companyName}
+            </span>
+          )}
+        </div>
+        {/* GST */}
+        <div className="flex flex-col gap-2">
+          <label
+            htmlFor="reg-gst"
+            className="text-[14px] font-semibold text-gray-700"
+          >
+            GST Number
+          </label>
+          <div
+            className={`flex items-center gap-3 bg-gray-50 border ${errors.gst ? "border-red-400 focus-within:border-red-500 focus-within:ring-red-500/20" : "border-gray-200 focus-within:border-[#e56419] focus-within:ring-[#e56419]/20"} focus-within:ring-4 rounded-xl px-4 h-12 transition-all`}
+          >
+            <FileText size={18} className="text-gray-400 shrink-0" />
+            <input
+              id="reg-gst"
+              name="gst"
+              type="text"
+              autoComplete="gst"
+              placeholder="GST Number"
+              value={form.gst}
+              onChange={handleChange}
+              className="flex-1 bg-transparent border-none outline-none text-[15px] text-gray-900 placeholder:text-gray-400"
+            />
+          </div>
+          {errors.gst && (
+            <span className="text-red-500 text-xs font-medium mt-1">
+              {errors.gst}
+            </span>
+          )}
+        </div>
         {/* Email */}
         <div className="flex flex-col gap-2">
           <label

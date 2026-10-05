@@ -26,7 +26,7 @@ jobs:
       - name: Build frontend
         env:
           VITE_RAZORPAY_KEY_ID: ${{ secrets.VITE_RAZORPAY_KEY_ID }}
-        run: pnpm --filter pinnaclesystems-payroll run build
+        run: pnpm --filter payrollwebsite run build
 
       - name: Deploy application source to VPS
         uses: easingthemes/ssh-deploy@v5.1.0
@@ -72,4 +72,4 @@ jobs:
             pnpm prisma:generate
             pnpm prisma:migrate:deploy
 
-            pm2 reload B2Samifoods --update-env || pm2 start server.js --name B2Samifoods
+            pm2 reload payrollwebsite --update-env || pm2 start server.js --name payrollwebsite
