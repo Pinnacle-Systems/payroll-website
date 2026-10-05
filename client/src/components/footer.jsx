@@ -64,7 +64,7 @@ export function Footer() {
           <div className="col-span-2 lg:col-span-2">
             <Link to="/" className="flex items-center gap-3 mb-6">
               <span className="text-2xl font-bold tracking-tight">
-                Dot<span className="text-[#e56419]">HR</span>
+                Dot.<span className="text-[#e56419]">HR</span>
               </span>
               {/* <div className="flex items-center group mr-8">
                 <img src={logo} alt="Logo" className="h-14 object-contain" />

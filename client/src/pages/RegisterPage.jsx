@@ -11,8 +11,9 @@ import {
   Check,
   Building,
   FileText,
+  KeyRound,
 } from "lucide-react";
-import { useRegisterMutation } from "../redux/services/authApi";
+import { useRegisterMutation, useSendOtpMutation } from "../redux/services/authApi";
 import { setCredentials } from "../redux/features/authSlice";
 import { useAppDispatch } from "../redux/Dispatch/useAppDispatch";
 import faviconImg from "../assets/pinnacle.jpg";
@@ -40,10 +41,13 @@ export default function RegisterPage({
     mobile: "",
     password: "",
     confirm: "",
+    otp: "",
   });
   const [errors, setErrors] = useState({});
+  const [step, setStep] = useState(1);
 
-  const [addData, { isLoading }] = useRegisterMutation();
+  const [sendOtp, { isLoading: isSendingOtp }] = useSendOtpMutation();
+  const [addData, { isLoading: isRegistering }] = useRegisterMutation();
 
   const validate = () => {
     const errs = {};
@@ -67,11 +71,28 @@ export default function RegisterPage({
     return errs;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSendOtp = async (e) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length) {
       setErrors(errs);
+      return;
+    }
+    setErrors({});
+
+    try {
+      await sendOtp({ email: form.email }).unwrap();
+      setStep(2);
+    } catch (err) {
+      const errMsg = err?.data?.message || err?.message || "Failed to send OTP.";
+      setErrors({ apiError: errMsg });
+    }
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    if (!form.otp || form.otp.length !== 6) {
+      setErrors({ apiError: "Please enter a valid 6-digit OTP." });
       return;
     }
     setErrors({});
@@ -84,16 +105,14 @@ export default function RegisterPage({
         gst: form.gst,
         mobile: form.mobile,
         password: form.password,
+        otp: form.otp,
       }).unwrap();
 
       dispatch(setCredentials({ user: result.user, token: result.token }));
       if (isModal) onClose();
       else navigate("/");
     } catch (err) {
-      const errMsg =
-        err?.data?.message ||
-        err?.message ||
-        "Registration failed. Please try again.";
+      const errMsg = err?.data?.message || err?.message || "Registration failed.";
       setErrors({ apiError: errMsg });
     }
   };
@@ -118,7 +137,7 @@ export default function RegisterPage({
       </p>
 
       <form
-        onSubmit={handleSubmit}
+        onSubmit={step === 1 ? handleSendOtp : handleRegister}
         className="grid grid-cols-1 sm:grid-cols-2 gap-5"
         noValidate
       >
@@ -369,20 +388,71 @@ export default function RegisterPage({
           )}
         </div>
 
-        <button
-          type="submit"
-          className="sm:col-span-2 mt-4 h-12 bg-[#e56419] hover:bg-[#d45610] text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-[0_4px_14px_rgba(229,100,25,0.4)] hover:shadow-[0_6px_20px_rgba(229,100,25,0.6)] hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0"
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-          ) : (
-            <>
-              {" "}
-              Create account <ArrowRight size={18} />
-            </>
-          )}
-        </button>
+        {/* Submit / Step buttons */}
+        {step === 1 ? (
+          <button
+            type="submit"
+            className="sm:col-span-2 mt-4 h-12 bg-[#e56419] hover:bg-[#d45610] text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-[0_4px_14px_rgba(229,100,25,0.4)] hover:shadow-[0_6px_20px_rgba(229,100,25,0.6)] hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0"
+            disabled={isSendingOtp}
+          >
+            {isSendingOtp ? (
+              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+            ) : (
+              <>
+                {" "}
+                Continue <ArrowRight size={18} />
+              </>
+            )}
+          </button>
+        ) : (
+          <div className="sm:col-span-2 flex flex-col gap-4 mt-2">
+            <div className="flex flex-col gap-2">
+              <label
+                htmlFor="reg-otp"
+                className="text-[14px] font-semibold text-gray-700"
+              >
+                Enter OTP sent to {form.email}
+              </label>
+              <div
+                className={`flex items-center gap-3 bg-gray-50 border ${errors.otp ? "border-red-400 focus-within:border-red-500 focus-within:ring-red-500/20" : "border-gray-200 focus-within:border-[#e56419] focus-within:ring-[#e56419]/20"} focus-within:ring-4 rounded-xl px-4 h-12 transition-all`}
+              >
+                <KeyRound size={18} className="text-gray-400 shrink-0" />
+                <input
+                  id="reg-otp"
+                  name="otp"
+                  type="text"
+                  maxLength={6}
+                  placeholder="6-digit OTP"
+                  value={form.otp}
+                  onChange={handleChange}
+                  className="flex-1 bg-transparent border-none outline-none text-[15px] text-gray-900 placeholder:text-gray-400 text-center tracking-widest font-semibold"
+                />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="h-12 bg-[#e56419] hover:bg-[#d45610] text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-[0_4px_14px_rgba(229,100,25,0.4)] hover:shadow-[0_6px_20px_rgba(229,100,25,0.6)] hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0"
+              disabled={isRegistering}
+            >
+              {isRegistering ? (
+                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              ) : (
+                <>
+                  {" "}
+                  Verify & Create Account <Check size={18} />
+                </>
+              )}
+            </button>
+            <button 
+              type="button" 
+              onClick={() => setStep(1)}
+              className="text-sm font-medium text-gray-500 hover:text-gray-700 mt-2"
+            >
+              Back to details
+            </button>
+          </div>
+        )}
       </form>
 
       <p className="text-center text-[14px] text-gray-500 mt-8">

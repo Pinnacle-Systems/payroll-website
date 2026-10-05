@@ -7,14 +7,89 @@ datasource db {
 }
 
 model User {
-  id          Int       @id @default(autoincrement())
+  id          Int         @id @default(autoincrement())
   name        String?
-  email       String    @unique
+  email       String      @unique
   password    String
   mobile      String?
-  role        String    @default("user")
-  createdAt   DateTime? @default(now())
-  updatedAt   DateTime? @updatedAt
+  role        String      @default("user")
+  createdAt   DateTime?   @default(now())
+  updatedAt   DateTime?   @updatedAt
   companyName String
-  gst         String    @unique
+  gst         String      @unique
+  payPeriods  PayPeriod[]
+  features      Features[]
+  subscriptions Subscription[]
+}
+
+model Features {
+  id             Int              @id @default(autoincrement())
+  name           String
+  description    String?
+  createdAt      DateTime?        @default(now())
+  updatedAt      DateTime?        @updatedAt
+  status         Boolean?         @default(true)
+  userId         Int?
+  User           User?            @relation(fields: [userId], references: [id])
+  PayPeriodPrice PayPeriodPrice[]
+  subscriptions  Subscription[]
+}
+
+model PayPeriod {
+  id             Int              @id @default(autoincrement())
+  name           String
+  validityDays   Int              @default(30)
+  createdAt      DateTime?        @default(now())
+  updatedAt      DateTime?        @updatedAt
+  status         Boolean?         @default(true)
+  userId         Int?
+  User           User?            @relation(fields: [userId], references: [id])
+  PayPeriodPrice PayPeriodPrice[]
+  subscriptions  Subscription[]
+}
+
+model PayPeriodPrice {
+  id                Int                @id @default(autoincrement())
+  payPeriodId       Int
+  PayPeriod         PayPeriod          @relation(fields: [payPeriodId], references: [id], onDelete: Cascade)
+  featureId         Int
+  Features          Features           @relation(fields: [featureId], references: [id])
+  price             Float
+  status            Boolean?           @default(true)
+  payPeriodContents PayPeriodContent[]
+  subscriptions     Subscription[]
+}
+
+model PayPeriodContent {
+  id               Int            @id @default(autoincrement())
+  payPeriodPriceId Int
+  PayPeriodPrice   PayPeriodPrice @relation(fields: [payPeriodPriceId], references: [id], onDelete: Cascade)
+  name             String?
+}
+
+model Subscription {
+  id                Int             @id @default(autoincrement())
+  userId            Int
+  User              User            @relation(fields: [userId], references: [id])
+  payPeriodId       Int
+  PayPeriod         PayPeriod       @relation(fields: [payPeriodId], references: [id])
+  payPeriodPriceId  Int
+  PayPeriodPrice    PayPeriodPrice  @relation(fields: [payPeriodPriceId], references: [id])
+  featureId         Int
+  Features          Features        @relation(fields: [featureId], references: [id])
+  amount            Float
+  razorpayOrderId   String?
+  razorpayPaymentId String?
+  status            String          @default("Pending") // Pending, Success, Failed
+  startDate         DateTime?
+  endDate           DateTime?
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+}
+
+model Otp {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  otp       String
+  createdAt DateTime @default(now())
 }

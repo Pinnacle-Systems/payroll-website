@@ -6,8 +6,15 @@ const industries = [
     icon: Factory,
     title: "Textile & Manufacturing",
     tag: "Blue-collar Ready",
-    content:
-      "Built for the factory floor. Dothr handles high-volume blue-collar workforces, complex rotating shifts, overtime calculations, and biometric attendance with ease. Reduce manual errors and pay your workers accurately every time.",
+    content: (
+      <span>
+        Built for the factory floor. Dot.
+        <span className="text-[#e56419]">HR</span> handles high-volume
+        blue-collar workforces, complex rotating shifts, overtime calculations,
+        and biometric attendance with ease. Reduce manual errors and pay your
+        workers accurately every time.
+      </span>
+    ),
     gradient: "from-blue-600 to-blue-500",
     glowColor: "rgba(37,99,235,0.18)",
     tagBg: "bg-blue-500/20 text-blue-100 border-blue-400/30",
@@ -70,7 +77,7 @@ export default function Industries() {
             <span className="text-[#e56419]">Textiles to Corporates.</span>
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
-            Whether your team is on the factory floor or in the boardroom, Dot
+            Whether your team is on the factory floor or in the boardroom, Dot.
             <span className="text-[#e56419]">HR</span> adapts to your unique
             workforce needs.
           </p>

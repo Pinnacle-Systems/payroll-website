@@ -2,11 +2,12 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import prisma from "../config/db.js";
 import { JWT_SECRET, JWT_EXPIRES_IN } from "../config/constants.js";
+import { sendMail } from "./mail.service.js";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const generateToken = (user) =>
-  jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, {
+  jwt.sign({ id: user.id, email: user.email, role: user.role }, JWT_SECRET, {
     expiresIn: JWT_EXPIRES_IN,
   });
 
@@ -36,6 +37,38 @@ function validatePassword(password) {
     });
 }
 
+export const requestOtp = async (email) => {
+  validateEmail(email);
+  const normalizedEmail = email.trim().toLowerCase();
+  
+  const exists = await prisma.user.findUnique({
+    where: { email: normalizedEmail },
+  });
+  
+  if (exists) {
+    throw Object.assign(new Error("Email already registered"), { status: 409 });
+  }
+
+  const otp = Math.floor(100000 + Math.random() * 900000).toString();
+
+  await prisma.otp.upsert({
+    where: { email: normalizedEmail },
+    update: { otp, createdAt: new Date() },
+    create: { email: normalizedEmail, otp },
+  });
+
+  const mailSent = await sendMail({
+    to: normalizedEmail,
+    OTP: otp
+  });
+
+  if (!mailSent) {
+    throw Object.assign(new Error("Failed to send OTP email"), { status: 500 });
+  }
+  
+  return { message: "OTP sent successfully" };
+};
+
 export const registerUser = async ({
   name,
   email,
@@ -43,29 +76,53 @@ export const registerUser = async ({
   mobile,
   companyName,
   gst,
+  otp,
 }) => {
   if (!name || !name.trim())
     throw Object.assign(new Error("Name is required"), { status: 400 });
   validateEmail(email);
   validatePassword(password);
+  
+  if (!otp) {
+    throw Object.assign(new Error("OTP is required"), { status: 400 });
+  }
+
+  const normalizedEmail = email.trim().toLowerCase();
 
   const exists = await prisma.user.findUnique({
-    where: { email: email.trim().toLowerCase() },
+    where: { email: normalizedEmail },
   });
   if (exists)
     throw Object.assign(new Error("Email already registered"), { status: 409 });
+
+  const otpRecord = await prisma.otp.findUnique({
+    where: { email: normalizedEmail }
+  });
+
+  if (!otpRecord || otpRecord.otp !== otp.toString().trim()) {
+    throw Object.assign(new Error("Invalid OTP"), { status: 400 });
+  }
+
+  // Optional: check OTP expiry (e.g., 10 minutes)
+  const diffMins = (new Date() - new Date(otpRecord.createdAt)) / 60000;
+  if (diffMins > 10) {
+    throw Object.assign(new Error("OTP has expired"), { status: 400 });
+  }
 
   const hashed = await bcrypt.hash(password, 10);
   const user = await prisma.user.create({
     data: {
       name: name.trim(),
-      email: email.trim().toLowerCase(),
+      email: normalizedEmail,
       password: hashed,
       mobile: mobile || null,
       companyName: companyName?.trim() || null,
       gst: gst?.trim() || null,
     },
   });
+
+  // Clear OTP
+  await prisma.otp.delete({ where: { email: normalizedEmail } });
 
   return { token: generateToken(user), user: safeUser(user) };
 };
@@ -108,7 +165,7 @@ export const getUserById = async (id) => {
 
 export const updateUser = async (
   id,
-  { name, companyName, email, gst, mobile, currentPassword, newPassword },
+  { name, companyName, email, gst, mobile, password },
 ) => {
   if (!name || !name.trim())
     throw Object.assign(new Error("Name is required"), { status: 400 });
@@ -136,20 +193,9 @@ export const updateUser = async (
     gst: gst?.trim() || null,
   };
 
-  if (newPassword) {
-    // Require current password verification before any password change
-    if (!currentPassword)
-      throw Object.assign(
-        new Error("Current password is required to set a new password"),
-        { status: 400 },
-      );
-    validatePassword(newPassword);
-    const match = await bcrypt.compare(currentPassword, existingUser.password);
-    if (!match)
-      throw Object.assign(new Error("Current password is incorrect"), {
-        status: 401,
-      });
-    updateData.password = await bcrypt.hash(newPassword, 10);
+  if (password) {
+    validatePassword(password);
+    updateData.password = await bcrypt.hash(password, 10);
   }
 
   const updated = await prisma.user.update({

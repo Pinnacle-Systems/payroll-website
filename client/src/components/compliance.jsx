@@ -439,7 +439,7 @@ export default function Compliance() {
 
             <p className="text-sm sm:text-base text-white/90">
               Experience the fastest way to manage payroll and compliance with
-              DotHR.
+              Dot.HR
             </p>
           </div>
 

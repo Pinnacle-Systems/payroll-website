@@ -3,7 +3,18 @@ import {
   loginUser,
   getUserById,
   updateUser,
+  requestOtp,
 } from "../services/auth.service.js";
+
+export const sendOtp = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    const result = await requestOtp(email);
+    res.json(result);
+  } catch (err) {
+    next(err);
+  }
+};
 
 export const register = async (req, res, next) => {
   try {

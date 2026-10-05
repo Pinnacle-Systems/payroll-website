@@ -3,6 +3,8 @@ import authApi from "./services/authApi";
 import authReducer, { logout } from "./features/authSlice";
 
 import paymentApi from "./services/paymentApi";
+import { adminApi } from "./services/adminApi";
+import { publicApi } from "./services/publicApi";
 
 // Auto-logout on any 401 response from any RTK Query endpoint
 const authErrorMiddleware = (api) => (next) => (action) => {
@@ -18,13 +20,16 @@ const store = configureStore({
     [authApi.reducerPath]: authApi.reducer,
 
     [paymentApi.reducerPath]: paymentApi.reducer,
+    [adminApi.reducerPath]: adminApi.reducer,
+    [publicApi.reducerPath]: publicApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .concat(authErrorMiddleware)
       .concat(authApi.middleware)
-
-      .concat(paymentApi.middleware),
+      .concat(paymentApi.middleware)
+      .concat(adminApi.middleware)
+      .concat(publicApi.middleware),
 });
 
 export default store;
