@@ -21,6 +21,16 @@ const authApi = createApi({
       }),
       invalidatesTags: ["User"],
     }),
+    sendOtp: builder.mutation({
+      query: (payload) => ({
+        url: `${AUTH_API}/send-otp`,
+        method: "POST",
+        body: payload,
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }),
+    }),
     register: builder.mutation({
       query: (payload) => ({
         url: `${AUTH_API}/register`,
@@ -102,6 +112,7 @@ export const {
   useCreateAddressMutation,
   useUpdateAddressMutation,
   useDeleteAddressMutation,
+  useSendOtpMutation,
 } = authApi
 
 export default authApi

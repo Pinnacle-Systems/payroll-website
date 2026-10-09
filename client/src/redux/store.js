@@ -1,42 +1,35 @@
-import { configureStore, isRejectedWithValue } from "@reduxjs/toolkit"
-import authApi from "./services/authApi"
-import authReducer, { logout } from "./features/authSlice"
-import productCategoryApi from "./services/productCategoryApi"
-import productApi from "./services/productApi"
-import cartApi from "./services/cartApi"
-import wishlistApi from "./services/wishlistApi"
-import uomApi from "./services/uomApi"
-import paymentApi from "./services/paymentApi"
+import { configureStore, isRejectedWithValue } from "@reduxjs/toolkit";
+import authApi from "./services/authApi";
+import authReducer, { logout } from "./features/authSlice";
+
+import paymentApi from "./services/paymentApi";
+import { adminApi } from "./services/adminApi";
+import { publicApi } from "./services/publicApi";
 
 // Auto-logout on any 401 response from any RTK Query endpoint
 const authErrorMiddleware = (api) => (next) => (action) => {
   if (isRejectedWithValue(action) && action.payload?.status === 401) {
-    api.dispatch(logout())
+    api.dispatch(logout());
   }
-  return next(action)
-}
+  return next(action);
+};
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
-    [authApi.reducerPath]:            authApi.reducer,
-    [productCategoryApi.reducerPath]: productCategoryApi.reducer,
-    [productApi.reducerPath]:         productApi.reducer,
-    [cartApi.reducerPath]:            cartApi.reducer,
-    [wishlistApi.reducerPath]:        wishlistApi.reducer,
-    [uomApi.reducerPath]:             uomApi.reducer,
-    [paymentApi.reducerPath]:         paymentApi.reducer,
+    [authApi.reducerPath]: authApi.reducer,
+
+    [paymentApi.reducerPath]: paymentApi.reducer,
+    [adminApi.reducerPath]: adminApi.reducer,
+    [publicApi.reducerPath]: publicApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .concat(authErrorMiddleware)
       .concat(authApi.middleware)
-      .concat(productCategoryApi.middleware)
-      .concat(productApi.middleware)
-      .concat(cartApi.middleware)
-      .concat(wishlistApi.middleware)
-      .concat(uomApi.middleware)
-      .concat(paymentApi.middleware),
-})
+      .concat(paymentApi.middleware)
+      .concat(adminApi.middleware)
+      .concat(publicApi.middleware),
+});
 
-export default store
+export default store;

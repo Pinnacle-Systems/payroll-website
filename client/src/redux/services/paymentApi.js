@@ -89,6 +89,17 @@ const paymentApi = createApi({
       }),
       invalidatesTags: ["Order"],
     }),
+    getMyPlan: builder.query({
+      query: () => ({
+        url: "/payment/my-plan",
+        method: "GET",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }),
+      providesTags: ["Order"],
+    }),
   }),
 });
 
@@ -99,6 +110,7 @@ export const {
   useCreateOrderMutation,
   useVerifyPaymentMutation,
   useGetOneOrderAdminQuery,
+  useGetMyPlanQuery,
 } = paymentApi;
 
 export default paymentApi;

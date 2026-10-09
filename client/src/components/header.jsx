@@ -8,6 +8,7 @@ import {
   LogOut,
   Search,
   ChevronDown,
+  Package,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuthModal } from "./auth-modal-provider";
@@ -71,40 +72,46 @@ export function Header() {
 
           {/* Actions */}
           <div className="flex items-center gap-6">
-            <button className="p-2 hover:bg-muted rounded-full transition-colors hidden sm:flex">
+            {/* <button className="p-2 hover:bg-muted rounded-full transition-colors hidden sm:flex">
               <Search className="w-5 h-5 text-foreground" />
-            </button>
+            </button> */}
 
             {/* Auth section – desktop */}
             <div className="hidden md:flex items-center gap-6">
               {isAuthenticated && user ? (
                 <div className="relative group">
-                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted border border-border cursor-pointer transition-colors hover:bg-muted/80">
-                    <div className="w-7 h-7 rounded-full bg-primary flex items-center justify-center">
-                      <span className="text-primary-foreground text-xs font-bold uppercase">
+                  <div className="flex items-center gap-2 px-2 py-1.5 pr-4 rounded-full bg-[#f4ebe6] border border-[#e56419]/20 cursor-pointer transition-colors hover:bg-[#e8dcd5]">
+                    <div className="w-7 h-7 rounded-full bg-[#e56419] flex items-center justify-center shadow-sm">
+                      <span className="text-white text-xs font-bold uppercase">
                         {user.name?.charAt(0)}
                       </span>
                     </div>
-                    <span className="text-sm font-medium text-foreground">
+                    <span className="text-[13px] font-semibold text-gray-800">
                       {user.name}
                     </span>
                   </div>
 
                   {/* Hover Dropdown Menu */}
-                  <div className="absolute right-0 top-full pt-2 w-40 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                    <div className="bg-card border border-border rounded-xl shadow-lg overflow-hidden py-1">
+                  <div className="absolute right-0 top-full pt-2 w-44 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div className="bg-white border border-gray-100 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] overflow-hidden py-1.5">
                       <Link
                         to="/profile"
-                        className="flex items-center gap-2 px-4 py-2 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors font-medium"
+                        className="flex items-center gap-2.5 px-4 py-2 text-[14px] text-gray-700 hover:bg-gray-50 transition-colors font-medium"
                       >
-                        <User size={14} className="opacity-80" /> Profile
+                        <User size={16} className="text-gray-400" /> Profile
                       </Link>
-                      <div className="border-t border-border my-1"></div>
+                      <Link
+                        to="/my-plan"
+                        className="flex items-center gap-2.5 px-4 py-2 text-[14px] text-gray-700 hover:bg-gray-50 transition-colors font-medium"
+                      >
+                        <Package size={16} className="text-gray-400" /> My Plans
+                      </Link>
+                      <div className="border-t border-gray-100 my-1.5"></div>
                       <button
                         onClick={handleLogout}
-                        className="w-full text-left flex items-center gap-2 px-4 py-2 text-sm text-destructive hover:bg-destructive/10 transition-colors font-medium"
+                        className="w-full text-left flex items-center gap-2.5 px-4 py-2 text-[14px] text-red-500 hover:bg-red-50 transition-colors font-medium"
                       >
-                        <LogOut size={14} /> Logout
+                        <LogOut size={16} className="text-red-500" /> Logout
                       </button>
                     </div>
                   </div>
@@ -167,32 +174,39 @@ export function Header() {
             <div className="mt-2 flex flex-col gap-2">
               {isAuthenticated && user ? (
                 <>
-                  <div className="flex items-center gap-3 px-4 py-3 bg-muted rounded-lg">
-                    <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-                      <span className="text-primary-foreground text-sm font-bold uppercase">
+                  <div className="flex items-center gap-3 px-4 py-3 bg-[#f4ebe6] rounded-xl border border-[#e56419]/20 mt-2">
+                    <div className="w-9 h-9 rounded-full bg-[#e56419] flex items-center justify-center shadow-sm">
+                      <span className="text-white text-sm font-bold uppercase">
                         {user.name?.charAt(0)}
                       </span>
                     </div>
-                    <span className="text-sm font-semibold text-foreground">
+                    <span className="text-[15px] font-semibold text-gray-800">
                       {user.name}
                     </span>
                   </div>
 
                   <Link
                     to="/profile"
-                    className="px-4 py-2 text-sm text-foreground hover:bg-muted rounded-lg transition-colors font-medium flex items-center gap-2"
+                    className="px-4 py-3 mt-1 text-[15px] text-gray-700 hover:bg-gray-50 rounded-xl transition-colors font-medium flex items-center gap-3"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    <User size={14} /> Profile
+                    <User size={18} className="text-gray-400" /> Profile
                   </Link>
 
-                  <Button
-                    variant="outline"
-                    onClick={handleLogout}
-                    className="w-full rounded-full flex items-center gap-2 mt-1"
+                  <Link
+                    to="/my-plan"
+                    className="px-4 py-3 text-[15px] text-gray-700 hover:bg-gray-50 rounded-xl transition-colors font-medium flex items-center gap-3"
+                    onClick={() => setIsMenuOpen(false)}
                   >
-                    <LogOut size={15} /> Logout
-                  </Button>
+                    <Package size={18} className="text-gray-400" /> My Plans
+                  </Link>
+
+                  <button
+                    onClick={handleLogout}
+                    className="w-full text-left rounded-xl flex items-center gap-3 mt-1 px-4 py-3 text-[15px] text-red-500 hover:bg-red-50 transition-colors font-medium"
+                  >
+                    <LogOut size={18} className="text-red-500" /> Logout
+                  </button>
                 </>
               ) : (
                 <>
