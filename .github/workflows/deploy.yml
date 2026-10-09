@@ -26,7 +26,21 @@ jobs:
       - name: Build frontend
         env:
           VITE_RAZORPAY_KEY_ID: ${{ secrets.VITE_RAZORPAY_KEY_ID }}
-        run: pnpm --filter payrollwebsite run build
+        run: pnpm --filter @payrollwebsite/api run build
+
+      - name: Check frontend build output
+        run: |
+          echo "Current directory:"
+          pwd
+
+          echo "Client directory:"
+          ls -la client
+
+          echo "Client dist directory:"
+          ls -la client/dist
+
+          echo "All dist directories:"
+          find . -type d -name "dist" -print
 
       - name: Deploy application source to VPS
         uses: easingthemes/ssh-deploy@v5.1.0
