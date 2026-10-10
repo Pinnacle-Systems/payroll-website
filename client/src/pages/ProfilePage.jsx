@@ -46,7 +46,9 @@ const InputField = ({
   const [show, setShow] = useState(false);
 
   return (
-    <div className={`flex flex-col gap-2 ${isPass && !isEditing ? "hidden" : "block"}`}>
+    <div
+      className={`flex flex-col gap-2 ${isPass && !isEditing ? "hidden" : "block"}`}
+    >
       <label className="text-[11px] font-bold text-gray-600 uppercase tracking-wider flex items-center gap-1.5">
         <Icon size={14} className="text-gray-500" />
         {label} {required && <span className="text-red-500">*</span>}
@@ -71,7 +73,7 @@ const InputField = ({
               : readonly
                 ? "border-gray-200 bg-gray-50/50 cursor-not-allowed text-gray-600"
                 : "border-[#e56419]/30 bg-white focus:border-[#e56419] focus:ring-2 focus:ring-[#e56419]/20"
-          } ${isPass && !readonly ? 'pr-10' : ''}`}
+          } ${isPass && !readonly ? "pr-10" : ""}`}
         />
         {isPass && !readonly && (
           <button
@@ -91,7 +93,10 @@ const InputField = ({
 };
 
 export default function ProfilePage() {
-  const { data: user, isLoading, error } = useGetMeQuery();
+  // const { data: user, isLoading, isLoading } = useGetMeQuery();
+
+  let user, isLoading;
+  isLoading;
   const [updateProfile, { isLoading: isUpdating }] = useUpdateProfileMutation();
 
   const [isEditing, setIsEditing] = useState(false);
@@ -222,7 +227,6 @@ export default function ProfilePage() {
       <div className="absolute bottom-[-10%] right-[-10%] w-[400px] h-[400px] rounded-full bg-[#e56419]/5 blur-[80px] pointer-events-none" />
 
       <div className="w-full max-w-[850px] relative flex flex-col gap-6">
-        
         {/* Profile Header Card */}
         <div className="bg-white rounded-[24px] p-6 sm:p-8 shadow-sm border border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-5">
@@ -292,10 +296,14 @@ export default function ProfilePage() {
               </span>
             )}
           </div>
-          
+
           <div className="h-px bg-gray-100 w-full mb-6"></div>
 
-          <form onSubmit={handleSave} noValidate>
+          <form
+            // onSubmit={handleSave}
+
+            noValidate
+          >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
               <InputField
                 icon={User}

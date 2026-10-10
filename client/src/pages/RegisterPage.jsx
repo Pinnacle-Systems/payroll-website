@@ -13,7 +13,10 @@ import {
   FileText,
   KeyRound,
 } from "lucide-react";
-import { useRegisterMutation, useSendOtpMutation } from "../redux/services/authApi";
+import {
+  useRegisterMutation,
+  useSendOtpMutation,
+} from "../redux/services/authApi";
 import { setCredentials } from "../redux/features/authSlice";
 import { useAppDispatch } from "../redux/Dispatch/useAppDispatch";
 import faviconImg from "../assets/pinnacle.jpg";
@@ -84,7 +87,8 @@ export default function RegisterPage({
       await sendOtp({ email: form.email }).unwrap();
       setStep(2);
     } catch (err) {
-      const errMsg = err?.data?.message || err?.message || "Failed to send OTP.";
+      const errMsg =
+        err?.data?.message || err?.message || "Failed to send OTP.";
       setErrors({ apiError: errMsg });
     }
   };
@@ -112,7 +116,8 @@ export default function RegisterPage({
       if (isModal) onClose();
       else navigate("/");
     } catch (err) {
-      const errMsg = err?.data?.message || err?.message || "Registration failed.";
+      const errMsg =
+        err?.data?.message || err?.message || "Registration failed.";
       setErrors({ apiError: errMsg });
     }
   };
@@ -137,7 +142,7 @@ export default function RegisterPage({
       </p>
 
       <form
-        onSubmit={step === 1 ? handleSendOtp : handleRegister}
+        // onSubmit={step === 1 ? handleSendOtp : handleRegister}
         className="grid grid-cols-1 sm:grid-cols-2 gap-5"
         noValidate
       >
@@ -444,8 +449,8 @@ export default function RegisterPage({
                 </>
               )}
             </button>
-            <button 
-              type="button" 
+            <button
+              type="button"
               onClick={() => setStep(1)}
               className="text-sm font-medium text-gray-500 hover:text-gray-700 mt-2"
             >
